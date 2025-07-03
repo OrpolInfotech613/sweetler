@@ -216,6 +216,7 @@ class PurchaseController extends Controller
                             'quantity' => $totalWithFree,
                             'unit' => $product->unit_types ?? 'pcs',
                             'reason' => 'Purchase Bill #' . $validate['bill_no'] . ' - Receipt #' . $purchaseReceiptId,
+                            'gst' => $validate['gst'],
                             'created_at' => now(),
                             'updated_at' => now(),
                         ];
