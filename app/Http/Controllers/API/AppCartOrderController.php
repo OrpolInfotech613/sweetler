@@ -861,26 +861,10 @@ class AppCartOrderController extends Controller
     public function getCartList(Request $request)
     {
         try {
-            $user = auth()->user();
-            if (!$user) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthorized'
-                ], 401);
-            }
-
-            $branch = Branch::where('id', $user->branch_id)
-                ->where('status', 'active')
-                ->first();
-
-            if (!$branch) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No accessible branch found'
-                ], 404);
-            }
-
-            configureBranchConnection($branch);
+            $auth = $this->authenticateAndConfigureBranch();
+            $user = $auth['user'];
+            $role = $auth['role'];
+            $branch = $auth['branch'];
 
             // Get all unavailable carts with user details and cart items count
             $unavailableCarts = Cart::on($branch->connection_name)
