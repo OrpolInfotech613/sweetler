@@ -161,8 +161,9 @@ class InventoryController extends Controller
                 'quantity' => strtoupper($request->type) == 'IN' ? $request->quantity : -$request->quantity,
                 'type' => $request->type,
                 'reason' => $request->reason,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'gst' => $request->gst
+                // 'created_at' => now(),
+                // 'updated_at' => now(),
             ];
 
             if (strtoupper($role->role_name) === 'SUPER ADMIN') {

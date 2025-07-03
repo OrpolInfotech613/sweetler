@@ -24,7 +24,7 @@
                 </div>
 
                 <!-- Quantity -->
-                <div class="input-form col-span-3 mt-3">    
+                <div class="input-form col-span-3 mt-3">
                     <label for="quantity" class="form-label w-full flex flex-col sm:flex-row">
                         Quantity<span style="color: red;margin-left: 3px;"> *</span>
                     </label>
@@ -48,6 +48,17 @@
                         Reason
                     </label>
                     <input id="reason" type="text" name="reason" class="form-control field-new">
+                </div>
+
+                <!-- GST -->
+                <div class="input-form col-span-3 mt-3">
+                    <label for="gst" class="form-label w-full flex flex-col sm:flex-row">
+                        GST
+                    </label>
+                    <select id="gst" name="gst" class="form-control field-new">
+                        <option value="on">ON</option>
+                        <option value="off">OFF</option>
+                    </select>
                 </div>
             </div>
 

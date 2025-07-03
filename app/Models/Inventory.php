@@ -10,7 +10,7 @@ class Inventory extends Model
     use HasDynamicTable;
 
     protected $table = 'inventory';
-    protected $fillable = ['product_id', 'type', 'quantity', 'unit', 'reason'];
+    protected $fillable = ['product_id', 'type', 'quantity', 'unit', 'reason', 'gst'];
 
     // Relationships
     public function product()
