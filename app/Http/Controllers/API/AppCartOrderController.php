@@ -616,7 +616,7 @@ class AppCartOrderController extends Controller
                 // Get cart and verify it exists and belongs to user
                 $cart = Cart::on($branch->connection_name)
                     ->where('id', $cartId)
-                    ->where('user_id', $user->id) // Ensure user owns the cart
+                    ->where('status', 'unavailable')
                     ->first();
 
                 if (!$cart) {
@@ -634,7 +634,7 @@ class AppCartOrderController extends Controller
                         }
                     ])
                     ->where('cart_id', $cartId)
-                    ->where('user_id', $user->id) // Ensure user owns the items
+                    ->where('order_receipt_id', null) // Ensure items are not already part of an order receipt
                     ->get();
 
                 if ($cartItems->isEmpty()) {
@@ -752,31 +752,31 @@ class AppCartOrderController extends Controller
                     'customer_name' => $orderBill->customer_name,
                     'customer_contact' => $orderBill->customer_contact,
                     'bill_summary' => [
-                        'sub_total' => $orderBill->sub_total,
-                        'total_taxes' => $orderBill->total_texes,
-                        'discount_rs' => $orderBill->discount_rs,
-                        'discount_percentage' => $orderBill->discount_percentage,
-                        'total' => $orderBill->total
+                        'sub_total' => $orderBill->sub_total, // Total before discount and taxes
+                        'total_taxes' => $orderBill->total_texes, // Total taxes applied
+                        'discount_rs' => $orderBill->discount_rs, // Total discount in rupees
+                        'discount_percentage' => $orderBill->discount_percentage, // Total discount percentage applied
+                        'total' => $orderBill->total // Total after discount and taxes
                     ],
-                    'payment_info' => [
-                        'payment_status' => $orderBill->payment_status,
-                        'payment_method' => $orderBill->razorpay_payment_id ? 'online' : 'cash',
-                        'razorpay_payment_id' => $orderBill->razorpay_payment_id,
-                        'bill_due_date' => $orderBill->bill_due_date
-                    ],
-                    'delivery_info' => [
-                        'is_delivery' => $orderBill->is_delivery,
-                        'address_id' => $orderBill->address_id,
-                        'ship_to_name' => $orderBill->ship_to_name,
-                        'expected_delivery_date' => $orderBill->expected_delivery_date
-                    ],
+                    // 'payment_info' => [
+                    //     'payment_status' => $orderBill->payment_status,
+                    //     'payment_method' => $orderBill->razorpay_payment_id ? 'online' : 'cash',
+                    //     'razorpay_payment_id' => $orderBill->razorpay_payment_id,
+                    //     'bill_due_date' => $orderBill->bill_due_date
+                    // ],
+                    // 'delivery_info' => [
+                    //     'is_delivery' => $orderBill->is_delivery,
+                    //     'address_id' => $orderBill->address_id,
+                    //     'ship_to_name' => $orderBill->ship_to_name,
+                    //     'expected_delivery_date' => $orderBill->expected_delivery_date
+                    // ],
                     'items_summary' => [
-                        'total_items' => count($itemsDetails),
-                        'total_quantity' => $totalItemsCount,
-                        'loose_quantity_items' => $looseQuantityItems,
-                        'fixed_quantity_items' => $fixedQuantityItems
+                        'total_items' => count($itemsDetails), // Total number of items in the bill
+                        'total_quantity' => $totalItemsCount, // Total quantity of products in the bill
+                        'loose_quantity_items' => $looseQuantityItems, // Count of loose quantity items
+                        'fixed_quantity_items' => $fixedQuantityItems // Count of fixed quantity items
                     ],
-                    'items' => $itemsDetails,
+                    'items' => $itemsDetails, // Detailed bill products information
                     'cart_status' => [
                         'cart_cleared' => $cartCleared,
                         'cart_status' => $cartCleared ? 'available' : 'unavailable' // available when empty, unavailable when has products
@@ -867,8 +867,8 @@ class AppCartOrderController extends Controller
                 return [
                     'cart_id' => $cart->id,
                     'user_id' => $cart->user_id,
-                    'user_name' => $cart->user ? $cart->user->name : null,
-                    'user_email' => $cart->user ? $cart->user->email : null,
+                    // 'user_name' => $cart->user !== null ? $cart->user->name : null,
+                    // 'user_email' => $cart->user !== null ? $cart->user->email : null,
                     'status' => $cart->status,
                     'total_items' => $cartItems->sum('product_quantity'),
                     'total_amount' => $cartItems->sum('total_amount'),
