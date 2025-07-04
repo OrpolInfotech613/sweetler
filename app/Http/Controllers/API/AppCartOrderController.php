@@ -862,6 +862,7 @@ class AppCartOrderController extends Controller
             $cartsWithDetails = $unavailableCarts->map(function ($cart) use ($branch) {
                 $cartItems = AppCartsOrders::on($branch->connection_name)
                     ->where('cart_id', $cart->id)
+                    ->where('order_receipt_id', null) // Ensure items are not already part of an order receipt
                     ->get();
 
                 return [
