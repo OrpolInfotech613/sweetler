@@ -571,6 +571,7 @@
         initSearchDropdown('product_category', 'categoryDropdown', '{{ route('categories.search') }}',
             'category');
 
+        setupEnterNavigation()
         // HSN Code dropdown with GST auto-fill
         initHsnDropdown();
         initHsnModal();
@@ -744,7 +745,7 @@
                 if (target.matches('#product_company, #product_category, #hsn_code')) {
                     const dropdown = target.nextElementSibling;
                     if (dropdown && dropdown.classList.contains('dropdown-list') && dropdown.classList.contains(
-                        'show')) {
+                            'show')) {
                         const highlightedItem = dropdown.querySelector('.dropdown-item.highlighted');
                         if (highlightedItem) {
                             highlightedItem.click();
