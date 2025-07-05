@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ledger;
 use App\Models\PurchaseParty;
 use App\Traits\BranchAuthTrait;
 use Exception;
@@ -52,34 +53,80 @@ class PurchasePartyController extends Controller
                 'party_name' => 'required|string',
                 'company_name' => 'nullable|string',
                 'gst_number' => 'nullable|string',
+                'gst_heading' => 'nullable|string',
                 'acc_no' => 'nullable|string',
                 'ifsc_code' => 'nullable|string',
                 'station' => 'nullable|string',
+                'state' => 'nullable|string',
                 'pincode' => 'nullable|string',
                 'mobile_no' => 'nullable|string',
                 'email' => 'nullable|string',
                 'address' => 'nullable|string',
+                'balancing_method' => 'nullable|string|max:255',
+                'mail_to' => 'nullable|string|max:255',
+                'contact_person' => 'nullable|string|max:255',
+                'designation' => 'nullable|string|max:255',
+                'note' => 'nullable|string|max:255',
+                'ledger_category' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
+                'pan_no' => 'nullable|string|max:255',
             ]);
-    
-            $data = [
+
+            $partyData = [
                 'party_name' => $validate['party_name'],
                 'company_name' => $validate['company_name'] ?? null,
                 'gst_number' => $validate['gst_number'] ?? null,
-                'acc_no' => $validate['acc_no'] ?? null,
-                'ifsc_code' => $validate['ifsc_code'] ?? null,
-                'station' => $validate['station'] ?? null,
-                'pincode' => $validate['pincode'] ?? null,
+                'gst_heading' => $validate['gst_heading'] ?? null,
                 'mobile_no' => $validate['mobile_no'] ?? null,
                 'email' => $validate['email'] ?? null,
                 'address' => $validate['address'] ?? null,
+                'station' => $validate['station'] ?? null,
+                'state' => $validate['state'] ?? null,
+                'acc_no' => $validate['acc_no'] ?? null,
+                'ifsc_code' => $validate['ifsc_code'] ?? null,
+                'pincode' => $validate['pincode'] ?? null,
+                'ledger_group' => 'SUNDRY CREDITORS',
+                'balancing_method' => $validated['balancing_method'] ?? null,
+                'mail_to' => $validated['mail_to'] ?? null,
+                'contact_person' => $validated['contact_person'] ?? null,
+                'designation' => $validated['designation'] ?? null,
+                'note' => $validated['note'] ?? null,
+                'ledger_category' => $validated['ledger_category'] ?? null,
+                'country' => $validated['country'] ?? null,
+                'pan_no' => $validated['pan_no'] ?? null,
             ];
-    
+
+            $ledgerData = [
+                'name' => $validated['party_name'] ?? null,
+                'station' => $validated['station'] ?? null,
+                'acc_group' => 'SUNDRY CREDITORS',
+                'balancing_method' => $validated['balancing_method'] ?? null,
+                'mail_to' => $validated['mail_to'] ?? null,
+                'address' => $validated['address'] ?? null,
+                'pin_code' => $validated['pin_code'] ?? null,
+                'email' => $validated['email'] ?? null,
+                'website' => $validated['website'] ?? null,
+                'contact_person' => $validated['contact_person'] ?? null,
+                'designation' => $validated['designation'] ?? null,
+                'phone_no' => $validated['phone_no'] ?? null,
+                'gst_no' => $validated['gst_no'] ?? null,
+                'state' => $validated['state'] ?? null,
+                'gst_heading' => $validated['gst_heading'] ?? null,
+                'note' => $validated['note'] ?? null,
+                'ledger_category' => $validated['ledger_category'] ?? null,
+                'country' => $validated['country'] ?? null,
+                'pan_no' => $validated['pan_no'] ?? null,
+                'type' => 'SUNDRY CREDITORS',
+            ];
+
             if (strtoupper($role->role_name) === 'SUPER ADMIN') {
-                PurchaseParty::create($data);
+                PurchaseParty::create($partyData);
+                Ledger::create($ledgerData);
             } else {
-                PurchaseParty::on($branch->connection_name)->create($data);
+                PurchaseParty::on($branch->connection_name)->create($partyData);
+                Ledger::on($branch->connection_name)->create($ledgerData);
             }
-    
+
             return redirect()->route('purchase.party.index')->with('success', 'Purchase Party Created Successfully!');
         } catch (Exception $ex) {
             dd($ex->getMessage());
@@ -148,15 +195,15 @@ class PurchasePartyController extends Controller
                 'email' => 'nullable|string',
                 'address' => 'nullable|string',
             ]);
-    
+
             if (strtoupper($role->role_name) === 'SUPER ADMIN') {
                 $party = PurchaseParty::findOrFail($id);
             } else {
                 $party = PurchaseParty::on($branch->connection_name)->findOrFail($id);
             }
-    
+
             $party->update($validate);
-    
+
             return redirect()->route('purchase.party.index')->with('success', 'Purchase Party Updated Successfully!');
         } catch (Exception $ex) {
             dd($ex->getMessage());

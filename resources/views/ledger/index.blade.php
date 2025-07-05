@@ -4,9 +4,11 @@
     <div class="content">
         <div class="flex items-center justify-between mt-5 mb-4">
             <h2 class="text-lg font-medium">Ledger - {{ $type }}</h2>
-            <a href="{{ route('ledger.create', ['type' => $type]) }}"
-                class="btn btn-primary shadow-md btn-hover ml-auto">Create
-                New Ledger</a>
+            @if ($type != 'SUNDRY CREDITORS')
+                <a href="{{ route('ledger.create', ['type' => $type]) }}"
+                    class="btn btn-primary shadow-md btn-hover ml-auto">Create
+                    New Ledger</a>
+            @endif
         </div>
 
         <div class="intro-y box p-5 mt-2">
@@ -37,7 +39,8 @@
                                 <td>
                                     <div class="flex gap-2">
                                         {{-- <a href="#" class="btn btn-primary">View</a> --}}
-                                        <a href="{{ route('ledger.edit', $ledger->id) }}?type={{ $type }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('ledger.edit', $ledger->id) }}?type={{ $type }}"
+                                            class="btn btn-primary">Edit</a>
                                     </div>
                                 </td>
                             </tr>
