@@ -22,6 +22,24 @@
             @csrf
             <div class="row">
                 <div class="column p-5">
+                    <!-- Balancing Method -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="ledger_group" class="form-label w-full flex flex-col sm:flex-row">Ledger Group<span
+                                style="color: red;margin-left: 3px;">
+                                *</span></label>
+                        <select id="ledger_group" name="ledger_group" class="form-control field-new">
+                            <option value="" selected>Select Ledger Group...</option>
+                            <option value="SUNDRY DEBTORS">SUNDRY DEBTORS</option>
+                            <option value="SUNDRY DEBTORS (E-COMMERCE)">SUNDRY DEBTORS (E-COMMERCE)</option>
+                            <option value="SUNDRY DEBTORS (FIELD STAFF)">SUNDRY DEBTORS (FIELD STAFF)</option>
+                            <option value="SUNDRY CREDITORS">SUNDRY CREDITORS</option>
+                            <option value="SUNDRY CREDITORS (E-COMMERCE)">SUNDRY CREDITORS (E-COMMERCE)</option>
+                            <option value="SUNDRY CREDITORS (EXPENSES PAYABLE)">SUNDRY CREDITORS (EXPENSES PAYABLE)</option>
+                            <option value="SUNDRY CREDITORS (FIELD STAFF)">SUNDRY CREDITORS (FIELD STAFF)</option>
+                            <option value="SUNDRY CREDITORS (MANUFACTURERS)">SUNDRY CREDITORS (MANUFACTURERS)</option>
+                            <option value="SUNDRY CREDITORS (SUPPLIERS)">SUNDRY CREDITORS (SUPPLIERS)</option>
+                        </select>
+                    </div>
                     <div class="input-form col-span-3 mt-3">
                         <label class="form-label">Party Name<span style="color: red;margin-left: 3px;">
                                 *</span></label>
@@ -67,8 +85,10 @@
                     </div>
                     <div class="input-form col-span-3 mt-3">
                         <label class="form-label">Address</label>
-                        <input type="textbox" name="address" class="form-control field-new" style="height: 100px">
+                        <textarea name="address" id="address" class="form-control field-new"></textarea>
                     </div>
+                </div>
+                <div class="column p-5">
                     <!-- Balancing Method -->
                     <div class="input-form col-span-3 mt-3">
                         <label for="balancing_method" class="form-label w-full flex flex-col sm:flex-row">Balancing
@@ -79,18 +99,21 @@
                             <option value="On Account">On Account</option>
                         </select>
                     </div>
-                </div>
-                <div class="column p-5">
                     <!-- GST No -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="gst_no" class="form-label w-full flex flex-col sm:flex-row">GST No</label>
-                        <input id="gst_no" type="text" name="gst_no" class="form-control field-new">
+                        <label for="gst_number" class="form-label w-full flex flex-col sm:flex-row">GST No</label>
+                        <input id="gst_number" type="text" name="gst_number" class="form-control field-new">
+                    </div>
+                    <!-- Pan No -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
+                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new">
                     </div>
                     <!-- GST Heading -->
-                    <div class="input-form col-span-3 mt-3">
+                    {{-- <div class="input-form col-span-3 mt-3">
                         <label for="gst_heading" class="form-label w-full flex flex-col sm:flex-row">GST Heading</label>
                         <input id="gst_heading" type="text" name="gst_heading" class="form-control field-new">
-                    </div>
+                    </div> --}}
                     <!-- Mail To -->
                     <div class="input-form col-span-3 mt-3">
                         <label for="mail_to" class="form-label w-full flex flex-col sm:flex-row">Mail To</label>
@@ -129,11 +152,6 @@
                     <div class="input-form col-span-3 mt-3">
                         <label for="country" class="form-label w-full flex flex-col sm:flex-row">Country</label>
                         <input id="country" type="text" name="country" class="form-control field-new">
-                    </div>
-                    <!-- Pan No -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
-                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new">
                     </div>
                 </div>
             </div>

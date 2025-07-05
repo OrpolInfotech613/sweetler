@@ -12,12 +12,11 @@
                 <div class="intro-y mt-8 overflow-auto sm:mt-0 lg:overflow-visible">
                     <div class="space-y-2">
                         <!-- Purchase Party -->
-                        <div class="w-full bg-primary border border-white text-white text-center py-4 px-6 rounded-lg transition-colors cursor-pointer">
+                        {{-- <div class="w-full bg-primary border border-white text-white text-center py-4 px-6 rounded-lg transition-colors cursor-pointer">
                             <a href="{{ route('purchase.party.index') }}" class="block text-white font-medium">
-                            {{-- <a href="#" class="block text-white font-medium"> --}}
                                 PURCHASE PARTY
                             </a>
-                        </div>
+                        </div> --}}
                         
                         <!-- SUNDRY DEBTORS -->
                         <div class="w-full bg-primary border border-white text-white text-center py-4 px-6 rounded-lg transition-colors cursor-pointer">
