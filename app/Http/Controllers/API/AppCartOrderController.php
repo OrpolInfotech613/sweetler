@@ -1725,47 +1725,73 @@ class AppCartOrderController extends Controller
 
     public function price(Request $request)
     {
-        $product = Product::findOrFail($request->productId);
+        $auth = $this->authenticateAndConfigureBranch();
+        $user = $auth['user'];
+        $branch = $auth['branch'];
+        $connection = $branch->connection_name; // your dynamic DB connection
 
+        // ✅ Fetch product from branch's database
+        $product = DB::connection($connection)
+            ->table('products')
+            ->where('id', $request->productId)
+            ->first();
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found in this branch.'], 404);
+        }
+
+        // Convert product to object if needed (in case it's stdClass)
+        $product = (object) $product;
+
+        // ✅ Handle KG input
         if ($request->kg !== null) {
             $kg = (float) $request->kg;
 
-            // Check for fixed kg 1–5
+            // Check for fixed 1–5 KG prices
             if (in_array($kg, [1, 2, 3, 4, 5])) {
                 $field = "price_" . intval($kg);
-                $price = $product->$field;
+                $price = $product->$field ?? 0;
 
                 return response()->json([
                     'price' => formatNumber($price),
                     'kg' => formatNumber($kg),
-                    'matched_fixed_price' => true
+                    'matched_fixed_price' => true,
+                    'branch_connection' => $connection
                 ]);
             }
 
-            // Fallback: calculate dynamically
-            $price = weightInKilogramsToPrice($request->kg, $product);
+            // Dynamic price
+            $price = weightInKilogramsToPrice($kg, $product);
             return response()->json([
                 'price' => formatNumber($price),
                 'kg' => formatNumber($kg),
-                'matched_fixed_price' => false
+                'matched_fixed_price' => false,
+                'branch_connection' => $connection
             ]);
         }
 
+        // ✅ Handle Grams input
         if ($request->grams !== null) {
-            $price = weightInGramsToPrice($request->grams, $product);
+            $grams = (float) $request->grams;
+            $price = weightInGramsToPrice($grams, $product);
             return response()->json([
                 'price' => formatNumber($price),
-                'grams' => $request->grams
+                'grams' => $grams,
+                'branch_connection' => $connection
             ]);
         }
 
+        // ✅ Handle Price to KG + Grams
         if ($request->Price !== null) {
-            $kg = weightInPriceToKilograms($request->Price, $product);
-            $grams = weightInPriceToGrams($request->Price, $product);
+            $priceInput = (float) $request->Price;
+            $kg = weightInPriceToKilograms($priceInput, $product);
+            $grams = weightInPriceToGrams($priceInput, $product);
+
             return response()->json([
-                'price' => $request->Price,
+                'price' => $priceInput,
                 'kg' => formatNumber($kg),
-                'grams' => formatNumber($grams)
+                'grams' => formatNumber($grams),
+                'branch_connection' => $connection
             ]);
         }
 
