@@ -94,6 +94,16 @@ class ProductController extends Controller
                 'bonus_use' => 'nullable',
                 'decimal_btn' => 'nullable',
                 'sale_online' => 'nullable',
+                'price_1' => 'nullable|numeric|min:0',
+                'price_2' => 'nullable|numeric|min:0',
+                'price_3' => 'nullable|numeric|min:0',
+                'price_4' => 'nullable|numeric|min:0',
+                'price_5' => 'nullable|numeric|min:0',
+                'kg_1' => 'nullable|numeric|min:0',
+                'kg_2' => 'nullable|numeric|min:0',
+                'kg_3' => 'nullable|numeric|min:0',
+                'kg_4' => 'nullable|numeric|min:0',
+                'kg_5' => 'nullable|numeric|min:0',
                 // 'gst_active' => 'nullable'
             ]);
 
@@ -209,7 +219,17 @@ class ProductController extends Controller
                 'discount' => $validate['discount'] ?? null,
                 'max_discount' => $validate['max_discount'] ?? 0,
                 'discount_scheme' => $validate['discount_scheme'] ?? null,
-                'bonus_use' => $validate['bonus_use'] == 'yes' ? 1 : 0
+                'bonus_use' => $validate['bonus_use'] == 'yes' ? 1 : 0,
+                'price_1' => $validate['price_1'] ?? 0,
+                'price_2' => $validate['price_2'] ?? 0,
+                'price_3' => $validate['price_3'] ?? 0,
+                'price_4' => $validate['price_4'] ?? 0,
+                'price_5' => $validate['price_5'] ?? 0,
+                'kg_1' => $validate['kg_1'] ?? 0,
+                'kg_2' => $validate['kg_2'] ?? 0,
+                'kg_3' => $validate['kg_3'] ?? 0,
+                'kg_4' => $validate['kg_4'] ?? 0,
+                'kg_5' => $validate['kg_5'] ?? 0,
             ];
 
             // Create the product using branch connection
@@ -323,6 +343,16 @@ class ProductController extends Controller
                 'bonus_use' => 'nullable',
                 'decimal_btn' => 'nullable',
                 'sale_online' => 'nullable',
+                'price_1' => 'nullable|numeric|min:0',
+                'price_2' => 'nullable|numeric|min:0',
+                'price_3' => 'nullable|numeric|min:0',
+                'price_4' => 'nullable|numeric|min:0',
+                'price_5' => 'nullable|numeric|min:0',
+                'kg_1' => 'nullable|numeric|min:0',
+                'kg_2' => 'nullable|numeric|min:0',
+                'kg_3' => 'nullable|numeric|min:0',
+                'kg_4' => 'nullable|numeric|min:0',
+                'kg_5' => 'nullable|numeric|min:0',
                 // 'gst_active' => 'nullable'
             ]);
 
@@ -399,7 +429,7 @@ class ProductController extends Controller
             //         [
             //             'hsn_code' => $validate['hsn_code'],
             //             // 'gst' => $validate['gst']
-            //         ] 
+            //         ]
             //     );
             //     // Update GST if HSN code already exists
             //     if (!$hsnCode->wasRecentlyCreated) {
@@ -443,6 +473,16 @@ class ProductController extends Controller
                 'discount_scheme' => $validate['discount_scheme'] ?? null,
                 'bonus_use' => $validate['bonus_use'] == 'yes' ? 1 : 0,
                 'updated_by' => session('branch_user_id'), // Track who updated the product
+                'price_1' => $validate['price_1'] ?? 0,
+                'price_2' => $validate['price_2'] ?? 0,
+                'price_3' => $validate['price_3'] ?? 0,
+                'price_4' => $validate['price_4'] ?? 0,
+                'price_5' => $validate['price_5'] ?? 0,
+                'kg_1' => $validate['kg_1'] ?? 0,
+                'kg_2' => $validate['kg_2'] ?? 0,
+                'kg_3' => $validate['kg_3'] ?? 0,
+                'kg_4' => $validate['kg_4'] ?? 0,
+                'kg_5' => $validate['kg_5'] ?? 0,
             ];
 
             // Update the product using branch connection

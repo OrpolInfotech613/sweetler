@@ -26,7 +26,6 @@ class AppCartOrderController extends Controller
             $user = $auth['user'];
             $role = $auth['role'];
             $branch = $auth['branch'];
-
             // Validate request - UPDATED for unit-aware product_weight
             $request->validate([
                 'product_id' => 'required|integer',
@@ -1017,7 +1016,6 @@ class AppCartOrderController extends Controller
                         'user_id' => $user->id
                     ]);
                     $cart = $targetCart;
-
                 } elseif ($newCart) {
                     if ($existingUserCart) {
                         $existingUserCart->update([
@@ -1723,5 +1721,54 @@ class AppCartOrderController extends Controller
             'status' => $cart->status,
             'branch_connection' => $connection
         ]);
+    }
+
+    public function price(Request $request)
+    {
+        $product = Product::findOrFail($request->productId);
+
+        if ($request->kg !== null) {
+            $kg = (float) $request->kg;
+
+            // Check for fixed kg 1–5
+            if (in_array($kg, [1, 2, 3, 4, 5])) {
+                $field = "price_" . intval($kg);
+                $price = $product->$field;
+
+                return response()->json([
+                    'price' => formatNumber($price),
+                    'kg' => formatNumber($kg),
+                    'matched_fixed_price' => true
+                ]);
+            }
+
+            // Fallback: calculate dynamically
+            $price = weightInKilogramsToPrice($request->kg, $product);
+            return response()->json([
+                'price' => formatNumber($price),
+                'kg' => formatNumber($kg),
+                'matched_fixed_price' => false
+            ]);
+        }
+
+        if ($request->grams !== null) {
+            $price = weightInGramsToPrice($request->grams, $product);
+            return response()->json([
+                'price' => formatNumber($price),
+                'grams' => $request->grams
+            ]);
+        }
+
+        if ($request->Price !== null) {
+            $kg = weightInPriceToKilograms($request->Price, $product);
+            $grams = weightInPriceToGrams($request->Price, $product);
+            return response()->json([
+                'price' => $request->Price,
+                'kg' => formatNumber($kg),
+                'grams' => formatNumber($grams)
+            ]);
+        }
+
+        return response()->json(['error' => 'Invalid input. Provide kg, grams, or price.'], 422);
     }
 }

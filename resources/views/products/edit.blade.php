@@ -384,6 +384,99 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <!-- BOX barcode -->
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
+                                    Price 1
+                                </label>
+                                <input id="price_1" type="number" name="price_1" class="form-control field-new" value=
+                                    {{ $product->price_1 ?? '' }}>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
+                                    Price 2
+                                </label>
+                                <input id="price_2" type="number" name="price_2" class="form-control field-new" value=
+                                    {{ $product->price_2 ?? '' }}>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
+                                    Price 3
+                                </label>
+                                <input id="price_3" type="number" name="price_3" class="form-control field-new" value=
+                                    {{ $product->price_3 ?? '' }}>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
+                                    Price 4
+                                </label>
+                                <input id="price_4" type="number" name="price_4" class="form-control field-new" value=
+                                    {{ $product->price_4 ?? '' }}>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
+                                    Price 5
+                                </label>
+                                <input id="price_5" type="number" name="price_5" class="form-control field-new" value=
+                                    {{ $product->price_5 ?? '' }}>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- BOX barcode -->
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
+                                    Kg 1
+                                </label>
+                                <input id="kg_1" type="number" name="kg_1" class="form-control field-new" value="{{ $product->Kg_1 }}">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
+                                    Kg 2
+                                </label>
+                                <input id="kg_2" type="number" name="kg_2" class="form-control field-new" value="{{ $product->Kg_2 }}">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
+                                    Kg 3
+                                </label>
+                                <input id="kg_3" type="number" name="kg_3" class="form-control field-new" value="{{ $product->Kg_3 }}">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
+                                    Kg 4
+                                </label>
+                                <input id="kg_4" type="number" name="kg_4" class="form-control field-new" value="{{ $product->Kg_4 }}">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="input-form col-span-3">
+                                <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
+                                    Kg 5
+                                </label>
+                                <input id="kg_5" type="number" name="kg_5" class="form-control field-new" value="{{ $product->Kg_5 }}">
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Converse pcs -->
                     {{-- <div class="input-form col-span-3 mt-3">
                         <label for="converse_pcs" class="form-label w-full flex flex-col sm:flex-row">
