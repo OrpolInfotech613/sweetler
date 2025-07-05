@@ -45,7 +45,7 @@
                             Ledger Name<span style="color: red;margin-left: 3px;"> *</span>
                         </label>
                         <input id="ledger_name" type="text" name="ledger_name" class="form-control field-new"
-                        value = {{ $ledger->name }}
+                        value ="{{ $ledger->name }}"
                         required>
                     </div>
 
