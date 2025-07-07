@@ -334,8 +334,7 @@
                                 <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
                                     Price 1
                                 </label>
-                                <input id="price_1" type="number" name="price_1"
-                                    class="form-control field-new">
+                                <input id="price_1" type="number" name="price_1" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -343,8 +342,7 @@
                                 <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
                                     Price 2
                                 </label>
-                                <input id="price_2" type="number" name="price_2"
-                                    class="form-control field-new">
+                                <input id="price_2" type="number" name="price_2" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -352,8 +350,7 @@
                                 <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
                                     Price 3
                                 </label>
-                                <input id="price_3" type="number" name="price_3"
-                                    class="form-control field-new">
+                                <input id="price_3" type="number" name="price_3" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -361,8 +358,7 @@
                                 <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
                                     Price 4
                                 </label>
-                                <input id="price_4" type="number" name="price_4"
-                                    class="form-control field-new">
+                                <input id="price_4" type="number" name="price_4" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -370,8 +366,7 @@
                                 <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
                                     Price 5
                                 </label>
-                                <input id="price_5" type="number" name="price_5"
-                                    class="form-control field-new">
+                                <input id="price_5" type="number" name="price_5" class="form-control field-new">
                             </div>
                         </div>
                     </div>
@@ -383,8 +378,7 @@
                                 <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
                                     Kg 1
                                 </label>
-                                <input id="kg_1" type="number" name="kg_1"
-                                    class="form-control field-new">
+                                <input id="kg_1" type="number" name="kg_1" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -392,8 +386,7 @@
                                 <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
                                     Kg 2
                                 </label>
-                                <input id="kg_2" type="number" name="kg_2"
-                                    class="form-control field-new">
+                                <input id="kg_2" type="number" name="kg_2" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -401,8 +394,7 @@
                                 <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
                                     Kg 3
                                 </label>
-                                <input id="kg_3" type="number" name="kg_3"
-                                    class="form-control field-new">
+                                <input id="kg_3" type="number" name="kg_3" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -410,8 +402,7 @@
                                 <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
                                     Kg 4
                                 </label>
-                                <input id="kg_4" type="number" name="kg_4"
-                                    class="form-control field-new">
+                                <input id="kg_4" type="number" name="kg_4" class="form-control field-new">
                             </div>
                         </div>
                         <div class="column">
@@ -419,8 +410,7 @@
                                 <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
                                     Kg 5
                                 </label>
-                                <input id="kg_5" type="number" name="kg_5"
-                                    class="form-control field-new">
+                                <input id="kg_5" type="number" name="kg_5" class="form-control field-new">
                             </div>
                         </div>
                     </div>
@@ -748,6 +738,46 @@
             },
             {
                 selector: '#box_barcode',
+                type: 'input'
+            },
+            {
+                selector: '#price_1',
+                type: 'input'
+            },
+            {
+                selector: '#price_2',
+                type: 'input'
+            },
+            {
+                selector: '#price_3',
+                type: 'input'
+            },
+            {
+                selector: '#price_4',
+                type: 'input'
+            },
+            {
+                selector: '#price_5',
+                type: 'input'
+            },
+            {
+                selector: '#kg_1',
+                type: 'input'
+            },
+            {
+                selector: '#kg_2',
+                type: 'input'
+            },
+            {
+                selector: '#kg_3',
+                type: 'input'
+            },
+            {
+                selector: '#kg_4',
+                type: 'input'
+            },
+            {
+                selector: '#kg_5',
                 type: 'input'
             },
             {

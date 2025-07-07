@@ -1788,6 +1788,7 @@ class AppCartOrderController extends Controller
             $grams = weightInPriceToGrams($priceInput, $product);
 
             return response()->json([
+                'success' => true,
                 'price' => $priceInput,
                 'kg' => formatNumber($kg),
                 'grams' => formatNumber($grams),
@@ -1795,6 +1796,10 @@ class AppCartOrderController extends Controller
             ]);
         }
 
-        return response()->json(['error' => 'Invalid input. Provide kg, grams, or price.'], 422);
+        return response()->json(
+            [
+                'success' => false,
+                'error' => 'Invalid input. Provide kg, grams, or price.'
+            ],422);
     }
 }
