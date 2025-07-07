@@ -27,18 +27,30 @@ class ProductController extends Controller
         $role = $auth['role'];
         $branch = $auth['branch'];
 
+        $search = $request->get('search');
+
         if (strtoupper($role->role_name) === 'SUPER ADMIN') {
-            $products = Product::with(['category', 'hsnCode', 'pCompany'])
-                ->orderByDesc('id')
-                ->paginate(10);
+            $query = Product::with(['category', 'hsnCode', 'pCompany']);
         } else {
-            $products = Product::on($branch->connection_name)
-                ->with(['category', 'hsnCode', 'pCompany'])
-                ->orderByDesc('id')
-                ->paginate(10);
+            $query = Product::on($branch->connection_name)->with(['category', 'hsnCode', 'pCompany']);
         }
 
-        return view('products.index', compact('products'));
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('product_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('barcode', 'LIKE', '%' . $search . '%')
+                    ->orWhere('search_option', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        $products = $query->orderByDesc('id')->paginate(10);
+
+        // Preserve search parameter in pagination links
+        if ($search) {
+            $products->appends(['search' => $search]);
+        }
+
+        return view('products.index', compact('products', 'search'));
     }
 
     /**
@@ -275,7 +287,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $auth = $this->authenticateAndConfigureBranch();
         $user = $auth['user'];
@@ -293,7 +305,11 @@ class ProductController extends Controller
                 ->firstOrFail();
         }
 
-        return view('products.edit', compact('product'));
+        // Pass page and search parameters to the view
+        $page = $request->get('page');
+        $search = $request->get('search');
+
+        return view('products.edit', compact('product', 'page', 'search'));
     }
 
     /**
@@ -488,7 +504,12 @@ class ProductController extends Controller
             // Update the product using branch connection
             $product->update($data);
 
-            return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+            $redirectParams = array_filter([
+                'page' => $request->get('page'),
+                'search' => $request->get('search')
+            ]);
+
+            return redirect()->route('products.index', $redirectParams)->with('success', 'Product updated successfully!');
         } catch (Exception $ex) {
             dd($ex->getMessage());
         }

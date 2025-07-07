@@ -17,7 +17,13 @@
                     <input type="file" name="excel_file" required accept=".csv, .xlsx, .xls">
                     <button type="submit">Import</button>
                 </form>
-
+                <div class="input-form ml-auto">
+                    <form method="GET" action="{{ route('products.index') }}" class="flex">
+                        <input type="text" name="search" id="search-product" placeholder="Search by name/barcode"
+                            value="{{ request('search') }}" class="form-control flex-1">
+                        <button type="submit" class="btn btn-primary shadow-md btn-hover">Search</button>
+                    </form>
+                </div>
             </div>
 
             <div class="intro-y col-span-12 overflow-auto">
@@ -60,7 +66,7 @@
                                     <div class="flex gap-2">
                                         <a href="{{ route('products.show', $product->id) }}"
                                             class="btn btn-primary">View</a>
-                                        <a href="{{ route('products.edit', $product->id) }}"
+                                        <a href="{{ route('products.edit', array_merge(['product' => $product->id], request()->only(['page', 'search']))) }}"
                                             class="btn btn-primary">Edit</a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                             onsubmit="return confirm('Are you sure?');">
@@ -301,10 +307,25 @@
 
         // Auto-select input content when focused
         document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-product');
             const pageInput = document.querySelector('.page-input');
             if (pageInput) {
                 pageInput.addEventListener('focus', function() {
                     this.select();
+                });
+            }
+
+            // Auto-focus search input if there's a search parameter
+            if (searchInput && new URLSearchParams(window.location.search).has('search')) {
+                searchInput.focus();
+            }
+
+            // Handle Enter key in search input
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        this.closest('form').submit();
+                    }
                 });
             }
         });
