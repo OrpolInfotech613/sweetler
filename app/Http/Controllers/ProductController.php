@@ -43,7 +43,7 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->orderByDesc('id')->paginate(10);
+        $products = $query->orderByDesc('id')->paginate(20);
 
         // Preserve search parameter in pagination links
         if ($search) {

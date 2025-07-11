@@ -121,7 +121,6 @@
                                         <span class="page-label">Page</span>
                                         <input type="number" class="page-input" value="{{ $products->currentPage() }}"
                                             min="1" max="{{ $products->lastPage() }}"
-                                            onchange="goToPage(this.value)"
                                             onkeypress="if(event.key === 'Enter') goToPage(this.value)">
                                         <span class="page-total">of {{ $products->lastPage() }}</span>
                                     </div>

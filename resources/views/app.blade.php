@@ -2848,7 +2848,7 @@ License: You must have a valid license purchased only from themeforest(the above
         document.addEventListener('DOMContentLoaded', function() {
             // Disable arrow key functionality for number inputs
             function disableArrowKeys(event) {
-                if (event.target.type === 'number') {
+                if (event.target.type === 'number' && !event.target.classList.contains('page-input')) {
                     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
                         event.preventDefault();
                     }
@@ -2857,7 +2857,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
             // Disable mouse wheel scroll on number input
             function disableScrollOnNumberInput(event) {
-                if (document.activeElement.type === 'number') {
+                if (document.activeElement.type === 'number' && !document.activeElement.classList.contains('page-input')) {
                     event.preventDefault();
                 }
             }
