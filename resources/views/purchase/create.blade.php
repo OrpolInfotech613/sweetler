@@ -152,6 +152,7 @@
                     <thead>
                         <tr class="border-b fs-7 fw-bolder text-gray-700 uppercase text-center">
                             <th scope="col" class="required">Product</th>
+                            <th scope="col" class="required">Expiry</th>
                             <th scope="col" class="required">mrp</th>
                             <th scope="col" class="required">box</th>
                             <th scope="col" class="required">pcs</th>
@@ -196,6 +197,11 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </td>
+
+                            <!-- Expiry Date -->
+                            <td>
+                                <input type="text" name="expiry_date[]" placeholder="DD-MM-YYYY" class="form-control field-new" maxlength="255">
                             </td>
 
                             <!-- Box -->
@@ -504,6 +510,7 @@
 
         const productFields = [
             '.product-search-input', // Changed to use search input instead of select
+            'input[name="expiry_date[]"]',
             'input[name="mrp[]"]',
             'input[name="box[]"]',
             'input[name="pcs[]"]',
@@ -969,16 +976,16 @@
             }, 2000);
 
             // Auto-focus MRP field for quick entry
-            const mrpField = row.querySelector('input[name="mrp[]"]');
-            if (mrpField) {
+            const expiryField = row.querySelector('input[name="expiry_date[]"]');
+            if (expiryField) {
                 setTimeout(() => {
-                    mrpField.focus();
-                    mrpField.select(); // Select the value for quick editing
+                    expiryField.focus();
+                    expiryField.select(); // Select the value for quick editing
                 }, 100);
             }
         } else {
             // Move to next field (box input)
-            const nextField = row.querySelector('input[name="mrp[]"]');
+            const nextField = row.querySelector('input[name="expiry_date[]"]');
             if (nextField) {
                 setTimeout(() => {
                     nextField.focus();
@@ -1379,7 +1386,7 @@
         }
 
         const inputs = newRow.querySelectorAll(
-            'input[name="mrp[]"], input[name="box[]"], input[name="pcs[]"], input[name="purchase_rate[]"], input[name="discount_percent[]"], input[name="discount_lumpsum[]"]'
+            'input[name="expiry_date[]"], input[name="mrp[]"], input[name="box[]"], input[name="pcs[]"], input[name="purchase_rate[]"], input[name="discount_percent[]"], input[name="discount_lumpsum[]"]'
         );
         inputs.forEach(input => {
             input.setAttribute('onchange', 'calculateRowAmount(this)');

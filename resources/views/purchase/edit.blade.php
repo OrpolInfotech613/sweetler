@@ -156,10 +156,11 @@
                 {{-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
                     <button type="button" class="btn btn-primary shadow-md mr-2 btn-hover"> + Add Product</button>
                 </div> --}}
-                <table class="display table intro-y col-span-12 bg-transparent w-full">
+                <table class="display table intro-y col-span-12 bg-transparent w-full product-table">
                     <thead>
                         <tr class="border-b fs-7 fw-bolder text-gray-700 uppercase text-center">
                             <th scope="col" class="required">Product</th>
+                            <th scope="col" class="required">Expiry</th>
                             <th scope="col" class="required">mrp</th>
                             <th scope="col" class="required">box</th>
                             <th scope="col" class="required">pcs</th>
@@ -175,7 +176,7 @@
                         @foreach ($purchaseItems as $index => $item)
                             <tr class="text-center">
                                 <!-- Product -->
-                                <td class="table__item-desc w-2/5">
+                                <td class="table__item-desc w-1/5">
                                     <div class="search-dropdown">
                                         <input type="text" name="product_search[]"
                                             class="form-control search-input product-search-input"
@@ -208,6 +209,11 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                </td>
+
+                                <!-- Expiry Date -->
+                                <td>
+                                    <input type="text" name="expiry_date[]" placeholder="DD-MM-YYYY" class="form-control field-new" maxlength="255" value="{{ $item->expiry_date ?? null }}">
                                 </td>
 
                                 <!-- MRP -->
@@ -455,6 +461,7 @@
 
         const productFields = [
             '.product-search-input', // Changed to use search input instead of select
+            'input[name="expiry_date[]"]',
             'input[name="mrp[]"]',
             'input[name="box[]"]',
             'input[name="pcs[]"]',
@@ -949,16 +956,16 @@
             }, 2000);
 
             // Auto-focus MRP field for quick entry
-            const mrpField = row.querySelector('input[name="mrp[]"]');
-            if (mrpField) {
+            const expiryField = row.querySelector('input[name="expiry_date[]"]');
+            if (expiryField) {
                 setTimeout(() => {
-                    mrpField.focus();
-                    mrpField.select(); // Select the value for quick editing
+                    expiryField.focus();
+                    expiryField.select(); // Select the value for quick editing
                 }, 100);
             }
         } else {
             // Move to next field
-            const nextField = row.querySelector('input[name="mrp[]"]');
+            const nextField = row.querySelector('input[name="expiry_date[]"]');
             if (nextField) {
                 setTimeout(() => {
                     nextField.focus();
@@ -1055,7 +1062,7 @@
         productSelect.setAttribute('onchange', 'loadProductDetails(this)');
 
         const inputs = newRow.querySelectorAll(
-            'input[name="mrp[]"], input[name="box[]"], input[name="pcs[]"], input[name="purchase_rate[]"], input[name="discount_percent[]"], input[name="discount_lumpsum[]"]'
+            'input[name="expiry_date[]"], input[name="mrp[]"], input[name="box[]"], input[name="pcs[]"], input[name="purchase_rate[]"], input[name="discount_percent[]"], input[name="discount_lumpsum[]"]'
         );
         inputs.forEach(input => {
             input.setAttribute('onchange', 'calculateRowAmount(this)');

@@ -92,6 +92,10 @@ class PurchaseController extends Controller
                 // Array validation for multiple purchase items
                 'product' => 'required|array|min:1',
                 'product.*' => 'required',
+                'mrp' => 'array',
+                'mrp.*' => 'nullable|numeric|min:0',
+                'expiry_date' => 'array',
+                'expiry_date.*' => 'nullable',
                 'box' => 'array',
                 'box.*' => 'nullable|numeric|min:0',
                 'pcs' => 'array',
@@ -186,9 +190,10 @@ class PurchaseController extends Controller
                         'gst' => $validate['gst'],
                         'product_id' => $productId,
                         'product' => $product->product_name,
-                        'mrp' => $product->mrp ?? 0,
-
+                        
                         // Original form values
+                        'expiry_date' => $validate['expiry_date'][$index] ?? '',
+                        'mrp' => $validate['mrp'][$index] ?? 0,
                         'box' => $boxQuantity,
                         'pcs' => $pcsQuantity,
                         'free' => $freeQuantity,
@@ -344,6 +349,10 @@ class PurchaseController extends Controller
                 // Array validation for multiple purchase items
                 'product' => 'required|array|min:1',
                 'product.*' => 'required',
+                'mrp' => 'array',
+                'mrp.*' => 'nullable|numeric|min:0',
+                'expiry_date' => 'array',
+                'expiry_date.*' => 'nullable',
                 'box' => 'required|array',
                 'box.*' => 'nullable|numeric|min:0',
                 'pcs' => 'required|array',
@@ -463,9 +472,11 @@ class PurchaseController extends Controller
                         'gst' => $validate['gst'],
                         'product_id' => $productId,
                         'product' => $product->product_name,
-                        'mrp' => $product->mrp ?? 0,
+                        // 'mrp' => $product->mrp ?? 0,
 
                         // Original form values
+                        'expiry_date' => $validate['expiry_date'][$index] ?? '',
+                        'mrp' => $validate['mrp'][$index] ?? 0,
                         'box' => $validate['box'][$index] ?? 0,
                         'pcs' => $validate['pcs'][$index] ?? 0,
                         'free' => $validate['free'][$index] ?? 0,

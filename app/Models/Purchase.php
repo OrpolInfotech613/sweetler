@@ -19,6 +19,7 @@ class Purchase extends Model
         'gst',
         'product_id',
         'product',
+        'expiry_date',
         'mrp',
         'box',
         'pcs',
