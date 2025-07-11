@@ -22,7 +22,7 @@
             @csrf
             <div class="row">
                 <div class="column p-5">
-                    <!-- Balancing Method -->
+                    <!-- Select ledger group -->
                     <div class="input-form col-span-3 mt-3">
                         <label for="ledger_group" class="form-label w-full flex flex-col sm:flex-row">Ledger Group<span
                                 style="color: red;margin-left: 3px;">
