@@ -166,7 +166,7 @@
                     <tbody id="product-table-body">
                         <tr class="text-center">
                             <!-- Product -->
-                            <td class="table__item-desc w-2/5">
+                            <td class="table__item-desc w-1/5">
                                 <div class="search-dropdown">
                                     <input type="text" name="product_search[]"
                                         class="form-control search-input product-search-input"
