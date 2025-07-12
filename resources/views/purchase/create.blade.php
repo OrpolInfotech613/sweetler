@@ -184,8 +184,8 @@
                                         <option value="{{ $product->id }}" data-mrp="{{ $product->mrp ?? 0 }}"
                                             data-name="{{ $product->product_name }}"
                                             data-box-pcs="{{ $product->converse_box ?? 1 }}"
-                                            data-sgst="{{ $product->hsnCode->gst / 2 ?? 0 }}"
-                                            data-cgst="{{ $product->hsnCode->gst / 2 ?? 0 }}"
+                                            data-sgst="{{ $product->gst / 2 ?? 0 }}"
+                                            data-cgst="{{ $product->gst / 2 ?? 0 }}"
                                             data-purchase-rate="{{ $product->purchase_rate ?? 0 }}"
                                             data-sale-rate-a="{{ $product->sale_rate_a ?? 0 }}"
                                             data-sale-rate-b="{{ $product->sale_rate_b ?? 0 }}"
@@ -571,10 +571,10 @@
                 // Special handling for product search field (fieldIndex 0)
                 if (fieldIndex === 0) {
                     const productInput = row.querySelector('.product-search-input');
-                    
+
                     // Don't navigate if barcode is being processed or product details are loading
                     if (productInput && (
-                        productInput.dataset.processingBarcode === 'true' || 
+                        productInput.dataset.processingBarcode === 'true' ||
                         productInput.dataset.loadingProductDetails === 'true'
                     )) {
                         console.log('Blocking navigation - barcode processing or details loading');
@@ -587,7 +587,7 @@
                         // Product is selected, check if product name is loaded in the display
                         const currentItemElement = document.getElementById('current-item');
                         const productNameLoaded = currentItemElement && currentItemElement.textContent && currentItemElement.textContent !== '-';
-                        
+
                         if (productNameLoaded) {
                             // Product details are loaded, proceed to next field
                             focusField(productFields[fieldIndex + 1], row);
@@ -767,7 +767,7 @@
 
             // Check if this looks like a barcode scan
             const isLikelyBarcodeValue = isLikelyBarcode(value);
-            
+
             timeout = setTimeout(async () => {
                 try {
                     let url = `${searchUrl}?search=${encodeURIComponent(value)}`;
@@ -796,15 +796,15 @@
                     // Check if it's an exact barcode match for auto-selection
                     if (data.auto_select && data.exact_match && currentData.length === 1) {
                         const product = currentData[0];
-                        
+
                         // Set processing flag to prevent navigation
                         isProcessingBarcodeScan = true;
-                        
+
                         // Mark this input as processing barcode
                         input.dataset.processingBarcode = 'true';
-                        
+
                         console.log('Auto-selecting product for barcode scan:', product);
-                        
+
                         // Auto-select the product for barcode scan
                         setTimeout(() => {
                             selectProduct(product.product_name, product.id, true);
@@ -814,7 +814,7 @@
                                 delete input.dataset.processingBarcode;
                             }, 300);
                         }, 50);
-                        
+
                         return; // Exit early, don't show dropdown
                     }
 
@@ -1037,16 +1037,16 @@
         try {
             // Load product details
             loadProductDetails(hiddenSelect);
-            
+
             // Wait a moment for product details to load, then move focus
             setTimeout(() => {
                 // Verify that product details were loaded by checking if product name is set and hidden select has value
                 const productNameSet = hiddenSelect.value && hiddenSelect.options[hiddenSelect.selectedIndex];
                 const currentItemElement = document.getElementById('current-item');
                 const productNameDisplayed = currentItemElement && currentItemElement.textContent && currentItemElement.textContent !== '-';
-                
+
                 const productDetailsLoaded = productNameSet && productNameDisplayed;
-                
+
                 console.log('Product details loading check:', {
                     hiddenSelectValue: hiddenSelect.value,
                     productNameDisplayed: currentItemElement ? currentItemElement.textContent : 'no current-item element',
