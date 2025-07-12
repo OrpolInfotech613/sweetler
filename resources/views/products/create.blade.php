@@ -327,94 +327,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <!-- BOX barcode -->
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
-                                    Price 1
-                                </label>
-                                <input id="price_1" type="number" name="price_1" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
-                                    Price 2
-                                </label>
-                                <input id="price_2" type="number" name="price_2" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
-                                    Price 3
-                                </label>
-                                <input id="price_3" type="number" name="price_3" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
-                                    Price 4
-                                </label>
-                                <input id="price_4" type="number" name="price_4" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
-                                    Price 5
-                                </label>
-                                <input id="price_5" type="number" name="price_5" class="form-control field-new">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- BOX barcode -->
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
-                                    Kg 1
-                                </label>
-                                <input id="kg_1" type="number" name="kg_1" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
-                                    Kg 2
-                                </label>
-                                <input id="kg_2" type="number" name="kg_2" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
-                                    Kg 3
-                                </label>
-                                <input id="kg_3" type="number" name="kg_3" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
-                                    Kg 4
-                                </label>
-                                <input id="kg_4" type="number" name="kg_4" class="form-control field-new">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
-                                    Kg 5
-                                </label>
-                                <input id="kg_5" type="number" name="kg_5" class="form-control field-new">
-                            </div>
-                        </div>
-                    </div>
-
 
                     <!-- Converse pcs -->
                     {{-- <div class="input-form col-span-3 mt-3">
@@ -506,6 +418,97 @@
                             Decimal
                         </label>
                         <input id="decimal_btn" type="checkbox" name="decimal_btn" class="form-check-input mr-0 ml-3">
+                    </div>
+
+                    <div id="decimal_section" style="display: none;">
+                        <div class="row ">
+                            <!-- BOX barcode -->
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
+                                        Price 1
+                                    </label>
+                                    <input id="price_1" type="number" name="price_1" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
+                                        Price 2
+                                    </label>
+                                    <input id="price_2" type="number" name="price_2" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
+                                        Price 3
+                                    </label>
+                                    <input id="price_3" type="number" name="price_3" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
+                                        Price 4
+                                    </label>
+                                    <input id="price_4" type="number" name="price_4" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
+                                        Price 5
+                                    </label>
+                                    <input id="price_5" type="number" name="price_5" class="form-control field-new">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <!-- BOX barcode -->
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
+                                        Weight 1
+                                    </label>
+                                    <input id="kg_1" type="number" name="kg_1" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
+                                        Weight 2
+                                    </label>
+                                    <input id="kg_2" type="number" name="kg_2" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
+                                        Weight 3
+                                    </label>
+                                    <input id="kg_3" type="number" name="kg_3" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
+                                        Weight 4
+                                    </label>
+                                    <input id="kg_4" type="number" name="kg_4" class="form-control field-new">
+                                </div>
+                            </div>
+                            <div class="column px-2">
+                                <div class="input-form col-span-3">
+                                    <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
+                                        Weight 5
+                                    </label>
+                                    <input id="kg_5" type="number" name="kg_5" class="form-control field-new">
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <!-- Sale online toggle -->
@@ -652,6 +655,18 @@
             });
         }
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        const decimalCheckbox = document.getElementById("decimal_btn");
+        const decimalSection = document.getElementById("decimal_section");
+
+        decimalCheckbox.addEventListener("change", function () {
+            if (this.checked) {
+                decimalSection.style.display = "block";
+            } else {
+                decimalSection.style.display = "none";
+            }
+        });
+    });
     document.addEventListener('DOMContentLoaded', function() {
         // Company dropdown (existing)
         initSearchDropdown('product_company', 'companyDropdown', '{{ route('companies.search') }}', 'company');
@@ -741,6 +756,38 @@
                 type: 'input'
             },
             {
+                selector: '#negative_billing',
+                type: 'select'
+            },
+            {
+                selector: '#min_qty',
+                type: 'input'
+            },
+            {
+                selector: '#reorder_qty',
+                type: 'input'
+            },
+            {
+                selector: '#discount',
+                type: 'select'
+            },
+            {
+                selector: '#max_discount',
+                type: 'input'
+            },
+            {
+                selector: '#discount_scheme',
+                type: 'input'
+            },
+            {
+                selector: '#bonus_use',
+                type: 'select'
+            },
+            {
+                selector: '#decimal_btn',
+                type: 'checkbox'
+            },
+            {
                 selector: '#price_1',
                 type: 'input'
             },
@@ -779,38 +826,6 @@
             {
                 selector: '#kg_5',
                 type: 'input'
-            },
-            {
-                selector: '#negative_billing',
-                type: 'select'
-            },
-            {
-                selector: '#min_qty',
-                type: 'input'
-            },
-            {
-                selector: '#reorder_qty',
-                type: 'input'
-            },
-            {
-                selector: '#discount',
-                type: 'select'
-            },
-            {
-                selector: '#max_discount',
-                type: 'input'
-            },
-            {
-                selector: '#discount_scheme',
-                type: 'input'
-            },
-            {
-                selector: '#bonus_use',
-                type: 'select'
-            },
-            {
-                selector: '#decimal_btn',
-                type: 'checkbox'
             },
             {
                 selector: '#sale_online',
@@ -1356,7 +1371,6 @@
                 }
             }, 200);
         });
-
 
         // Arrow key navigation
         input.addEventListener('keydown', function(e) {
