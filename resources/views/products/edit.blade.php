@@ -5,11 +5,11 @@
         .row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; */
         }
 
         .column {
-            width: 50%;
+            width: 100%;
             /* Adjust as needed */
             /* background-color: #f2f2f2; */
             padding: 10px;
@@ -87,6 +87,17 @@
             color: #007bff;
             font-style: italic;
         }
+
+        .form-updated {
+            box-shadow: 0px 3px 20px #0000003b;
+            position: relative;
+            border-radius: 0.375rem;
+            border-color: transparent;
+            --tw-bg-opacity: 1;
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 6px solid #164e63;
+        }
     </style>
 @endpush
 @section('content')
@@ -107,162 +118,163 @@
                     @if ($search)
                         <input type="hidden" name="search" value="{{ $search }}">
                     @endif
-                    {{-- <div class="grid grid-cols-12 gap-2 grid-updated"> --}}
-                    <!-- barcode -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="barcode" class="form-label w-full flex flex-col sm:flex-row">
-                            Barcode<span style="color: red;margin-left: 3px;"> *</span>
-                        </label>
-                        <input id="barcode" type="text" name="product_barcode" class="form-control field-new"
-                            value="{{ $product->barcode }}" required>
+                    <div class="grid grid-cols-12 gap-2 grid-updated">
+                        <!-- barcode -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="barcode" class="form-label w-full flex flex-col sm:flex-row">
+                                Barcode<span style="color: red;margin-left: 3px;"> *</span>
+                            </label>
+                            <input id="barcode" type="text" name="product_barcode" class="form-control field-new"
+                                value="{{ $product->barcode }}" required>
 
-                    </div>
+                        </div>
 
-                    <!-- Name -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_name" class="form-label w-full flex flex-col sm:flex-row">
-                            Name<span style="color: red;margin-left: 3px;"> *</span>
-                        </label>
-                        <input id="product_name" type="text" name="product_name" class="form-control field-new"
-                            placeholder="Enter Product name" required maxlength="255" value="{{ $product->product_name }}">
-                    </div>
+                        <!-- Name -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_name" class="form-label w-full flex flex-col sm:flex-row">
+                                Name<span style="color: red;margin-left: 3px;"> *</span>
+                            </label>
+                            <input id="product_name" type="text" name="product_name" class="form-control field-new"
+                                placeholder="Enter Product name" required maxlength="255"
+                                value="{{ $product->product_name }}">
+                        </div>
 
-                    <!-- search option -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="search_option" class="form-label w-full flex flex-col sm:flex-row">
-                            Search Option
-                        </label>
-                        <input id="search_option" type="text" name="search_option" class="form-control field-new"
-                            value="{{ $product->search_option }}">
-                    </div>
+                        <!-- search option -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="search_option" class="form-label w-full flex flex-col sm:flex-row">
+                                Search Option
+                            </label>
+                            <input id="search_option" type="text" name="search_option" class="form-control field-new"
+                                value="{{ $product->search_option }}">
+                        </div>
 
-                    <!-- Unit Types -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="unit_type" class="form-label w-full flex flex-col sm:flex-row">
-                            Unit Type <p style="color: red; margin-left: 3px;">*</p>
-                        </label>
-                        <select id="unit_type" name="unit_type" class="form-control field-new" required>
-                            <option value="" disabled
-                                {{ old('unit_type', $product->unit_types ?? '') == '' ? 'selected' : '' }}>
-                                Choose...
-                            </option>
-                            <option value="PCS"
-                                {{ old('unit_type', $product->unit_types ?? '') == 'PCS' ? 'selected' : '' }}>
-                                PCS
-                            </option>
-                            <option value="KG"
-                                {{ old('unit_type', $product->unit_types ?? '') == 'KG' ? 'selected' : '' }}>
-                                KG
-                            </option>
-                            <option value="LITER"
-                                {{ old('unit_type', $product->unit_types ?? '') == 'LITER' ? 'selected' : '' }}>
-                                LITER
-                            </option>
-                            <option value="BOX"
-                                {{ old('unit_type', $product->unit_types ?? '') == 'BOX' ? 'selected' : '' }}>
-                                BOX
-                            </option>
-                        </select>
-                    </div>
+                        <!-- Unit Types -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="unit_type" class="form-label w-full flex flex-col sm:flex-row">
+                                Unit Type <p style="color: red; margin-left: 3px;">*</p>
+                            </label>
+                            <select id="unit_type" name="unit_type" class="form-control field-new" required>
+                                <option value="" disabled
+                                    {{ old('unit_type', $product->unit_types ?? '') == '' ? 'selected' : '' }}>
+                                    Choose...
+                                </option>
+                                <option value="PCS"
+                                    {{ old('unit_type', $product->unit_types ?? '') == 'PCS' ? 'selected' : '' }}>
+                                    PCS
+                                </option>
+                                <option value="KG"
+                                    {{ old('unit_type', $product->unit_types ?? '') == 'KG' ? 'selected' : '' }}>
+                                    KG
+                                </option>
+                                <option value="LITER"
+                                    {{ old('unit_type', $product->unit_types ?? '') == 'LITER' ? 'selected' : '' }}>
+                                    LITER
+                                </option>
+                                <option value="BOX"
+                                    {{ old('unit_type', $product->unit_types ?? '') == 'BOX' ? 'selected' : '' }}>
+                                    BOX
+                                </option>
+                            </select>
+                        </div>
 
-                    <!-- Company -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- Company -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="product_company" class="form-label w-full flex flex-col sm:flex-row">
                             Company
                         </label>
                         <input id="product_company" type="text" name="product_company" class="form-control field-new"
                             value="{{ $product->pCompany->name ?? '' }}">
                     </div> --}}
-                    <!-- Company with Searchable Dropdown -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_company" class="form-label w-full flex flex-col sm:flex-row">
-                            Company
-                        </label>
-                        <div class="search-dropdown">
-                            <input id="product_company" type="text" name="product_company"
-                                class="form-control field-new search-input" placeholder="Search or type company name"
-                                autocomplete="off" value="{{ $product->pCompany->name ?? '' }}">
-                            <div class="dropdown-list" id="companyDropdown"></div>
+                        <!-- Company with Searchable Dropdown -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_company" class="form-label w-full flex flex-col sm:flex-row">
+                                Company
+                            </label>
+                            <div class="search-dropdown">
+                                <input id="product_company" type="text" name="product_company"
+                                    class="form-control field-new search-input" placeholder="Search or type company name"
+                                    autocomplete="off" value="{{ $product->pCompany->name ?? '' }}">
+                                <div class="dropdown-list" id="companyDropdown"></div>
 
-                            <!-- Hidden field for company ID -->
-                            <input type="hidden" id="hidden_company_id" name="company_id"
-                                value="{{ $product->company ?? '' }}">
+                                <!-- Hidden field for company ID -->
+                                <input type="hidden" id="hidden_company_id" name="company_id"
+                                    value="{{ $product->company ?? '' }}">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- category -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- category -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="product_category" class="form-label w-full flex flex-col sm:flex-row">
                             category
                         </label>
                         <input id="product_category" type="text" name="product_category" class="form-control field-new"
                             value="{{ $product->category->name ?? '' }}">
                     </div> --}}
-                    <!-- Category with Searchable Dropdown -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_category" class="form-label w-full flex flex-col sm:flex-row">
-                            Category
-                        </label>
-                        <div class="search-dropdown">
-                            <input id="product_category" type="text" name="product_category"
-                                class="form-control field-new search-input" placeholder="Search or type category"
-                                autocomplete="off" value="{{ $product->category->name ?? '' }}">
-                            <div class="dropdown-list" id="categoryDropdown"></div>
+                        <!-- Category with Searchable Dropdown -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_category" class="form-label w-full flex flex-col sm:flex-row">
+                                Category
+                            </label>
+                            <div class="search-dropdown">
+                                <input id="product_category" type="text" name="product_category"
+                                    class="form-control field-new search-input" placeholder="Search or type category"
+                                    autocomplete="off" value="{{ $product->category->name ?? '' }}">
+                                <div class="dropdown-list" id="categoryDropdown"></div>
 
-                            <!-- Hidden field for category ID -->
-                            <input type="hidden" id="hidden_category_id" name="category_id"
-                                value="{{ $product->category_id ?? '' }}">
+                                <!-- Hidden field for category ID -->
+                                <input type="hidden" id="hidden_category_id" name="category_id"
+                                    value="{{ $product->category_id ?? '' }}">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- HSN code -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- HSN code -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="hsn_code" class="form-label w-full flex flex-col sm:flex-row">
                             HSN Code
                         </label>
                         <input id="hsn_code" type="text" name="hsn_code" class="form-control field-new"
                             value="{{ $product->hsnCode->hsn_code ?? '' }}">
                     </div> --}}
-                    <!-- HSN Code with Searchable Dropdown -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="hsn_code" class="form-label w-full flex flex-col sm:flex-row">
-                            HSN Code
-                        </label>
-                        <div class="search-dropdown">
-                            @php
-                                $hsnDisplayValue = '';
-                                if ($product->hsnCode) {
-                                    $hsnDisplayValue = $product->hsnCode->hsn_code;
-                                    if ($product->hsnCode->gst) {
-                                        $gstData = is_string($product->hsnCode->gst)
-                                            ? json_decode($product->hsnCode->gst, true)
-                                            : $product->hsnCode->gst;
-                                        $gstValue = is_array($gstData) ? $gstData['gst'] ?? $gstData : $gstData;
+                        <!-- HSN Code with Searchable Dropdown -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="hsn_code" class="form-label w-full flex flex-col sm:flex-row">
+                                HSN Code
+                            </label>
+                            <div class="search-dropdown">
+                                @php
+                                    $hsnDisplayValue = '';
+                                    if ($product->hsnCode) {
+                                        $hsnDisplayValue = $product->hsnCode->hsn_code;
+                                        if ($product->hsnCode->gst) {
+                                            $gstData = is_string($product->hsnCode->gst)
+                                                ? json_decode($product->hsnCode->gst, true)
+                                                : $product->hsnCode->gst;
+                                            $gstValue = is_array($gstData) ? $gstData['gst'] ?? $gstData : $gstData;
 
-                                        $sgst = $gstValue / 2;
-                                        $cgst = $gstValue / 2;
-                                        $igst = $gstValue;
+                                            $sgst = $gstValue / 2;
+                                            $cgst = $gstValue / 2;
+                                            $igst = $gstValue;
 
-                                        $hsnDisplayValue .= " (SGST: {$sgst}%, CGST: {$cgst}%, IGST: {$igst}%)";
+                                            $hsnDisplayValue .= " (SGST: {$sgst}%, CGST: {$cgst}%, IGST: {$igst}%)";
+                                        }
                                     }
-                                }
-                            @endphp
+                                @endphp
 
-                            <input id="hsn_code" type="text" name="hsn_code_display"
-                                class="form-control field-new search-input" placeholder="Search or type HSN code"
-                                autocomplete="off" value="{{ $hsnDisplayValue }}">
-                            <div class="dropdown-list" id="hsnDropdown"></div>
+                                <input id="hsn_code" type="text" name="hsn_code_display"
+                                    class="form-control field-new search-input" placeholder="Search or type HSN code"
+                                    autocomplete="off" value="{{ $hsnDisplayValue }}">
+                                <div class="dropdown-list" id="hsnDropdown"></div>
 
-                            <!-- Hidden fields for actual HSN data -->
-                            <input type="hidden" id="hidden_hsn_code" name="hsn_code"
-                                value="{{ $product->hsnCode->hsn_code ?? '' }}">
-                            <input type="hidden" id="hidden_hsn_id" name="hsn_code_id"
-                                value="{{ $product->hsn_code_id ?? '' }}">
+                                <!-- Hidden fields for actual HSN data -->
+                                <input type="hidden" id="hidden_hsn_code" name="hsn_code"
+                                    value="{{ $product->hsnCode->hsn_code ?? '' }}">
+                                <input type="hidden" id="hidden_hsn_id" name="hsn_code_id"
+                                    value="{{ $product->hsn_code_id ?? '' }}">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- sgst -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- sgst -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="product_sgst" class="form-label w-full flex flex-col sm:flex-row">
                             SGST
                         </label>
@@ -270,8 +282,8 @@
                             value="{{ $hsnGst['SGST'] ?? '' }}">
                     </div> --}}
 
-                    <!-- CGST -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- CGST -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="product_cgst" class="form-label w-full flex flex-col sm:flex-row">
                             CGST
                         </label>
@@ -279,8 +291,8 @@
                             class="form-control field-new" value="{{ $hsnGst['CGST'] ?? '' }}">
                     </div> --}}
 
-                    <!-- IGST -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- IGST -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="product_igst" class="form-label w-full flex flex-col sm:flex-row">
                             IGST
                         </label>
@@ -288,113 +300,116 @@
                             class="form-control field-new" value="{{ $hsnGst['IGST'] ?? '' }}">
                     </div> --}}
 
-                    <!-- CESS -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_cess" class="form-label w-full flex flex-col sm:flex-row">
-                            CESS
-                        </label>
-                        <input id="product_cess" type="number" step="0.01" name="cess"
-                            class="form-control field-new" value="{{ $product->cess ?? null }}">
-                        {{-- class="form-control field-new" value="{{ $hsnGst['CESS'] ?? $product->cess ?? '' }}"> --}}
-                    </div>
+                        <!-- CESS -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_cess" class="form-label w-full flex flex-col sm:flex-row">
+                                CESS
+                            </label>
+                            <input id="product_cess" type="number" step="0.01" name="cess"
+                                class="form-control field-new" value="{{ $product->cess ?? null }}">
+                            {{-- class="form-control field-new" value="{{ $hsnGst['CESS'] ?? $product->cess ?? '' }}"> --}}
+                        </div>
 
-                    <!-- MRP -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_mrp" class="form-label w-full flex flex-col sm:flex-row">
-                            MRP
-                        </label>
-                        <input id="product_mrp" type="number" name="mrp" step="0.01"
-                            class="form-control field-new" value="{{ $product->mrp }}">
-                    </div>
+                        <!-- MRP -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_mrp" class="form-label w-full flex flex-col sm:flex-row">
+                                MRP
+                            </label>
+                            <input id="product_mrp" type="number" name="mrp" step="0.01"
+                                class="form-control field-new" value="{{ $product->mrp }}">
+                        </div>
 
-                    <!-- Purchase rate -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_purchase_rate" class="form-label w-full flex flex-col sm:flex-row">
-                            Purchase Rate
-                        </label>
-                        <input id="product_purchase_rate" type="number" step="0.0001" name="purchase_rate"
-                            class="form-control field-new" value="{{ $product->purchase_rate }}">
-                    </div>
+                        <!-- Purchase rate -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_purchase_rate" class="form-label w-full flex flex-col sm:flex-row">
+                                Purchase Rate
+                            </label>
+                            <input id="product_purchase_rate" type="number" step="0.0001" name="purchase_rate"
+                                class="form-control field-new" value="{{ $product->purchase_rate }}">
+                        </div>
 
-                    <!-- Sale rate A -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_sale_rate_a" class="form-label w-full flex flex-col sm:flex-row">
-                            Sale Rate A
-                        </label>
-                        <input id="product_sale_rate_a" type="number" step="0.01" name="sale_rate_a"
-                            class="form-control field-new" value="{{ $product->sale_rate_a }}">
-                    </div>
+                        <!-- Sale rate A -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_sale_rate_a" class="form-label w-full flex flex-col sm:flex-row">
+                                Sale Rate A
+                            </label>
+                            <input id="product_sale_rate_a" type="number" step="0.01" name="sale_rate_a"
+                                class="form-control field-new" value="{{ $product->sale_rate_a }}">
+                        </div>
 
-                    <!-- Sale rate B -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_sale_rate_b" class="form-label w-full flex flex-col sm:flex-row">
-                            Sale Rate B
-                        </label>
-                        <input id="product_sale_rate_b" type="number" step="0.01" name="sale_rate_b"
-                            class="form-control field-new" value="{{ $product->sale_rate_b }}">
-                    </div>
+                        <!-- Sale rate B -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_sale_rate_b" class="form-label w-full flex flex-col sm:flex-row">
+                                Sale Rate B
+                            </label>
+                            <input id="product_sale_rate_b" type="number" step="0.01" name="sale_rate_b"
+                                class="form-control field-new" value="{{ $product->sale_rate_b }}">
+                        </div>
 
-                    <!-- Sale rate C -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="product_sale_rate_c" class="form-label w-full flex flex-col sm:flex-row">
-                            Sale Rate C
-                        </label>
-                        <input id="product_sale_rate_c" type="number" step="0.01" name="sale_rate_c"
-                            class="form-control field-new" value="{{ $product->sale_rate_c }}">
-                    </div>
+                        <!-- Sale rate C -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="product_sale_rate_c" class="form-label w-full flex flex-col sm:flex-row">
+                                Sale Rate C
+                            </label>
+                            <input id="product_sale_rate_c" type="number" step="0.01" name="sale_rate_c"
+                                class="form-control field-new" value="{{ $product->sale_rate_c }}">
+                        </div>
 
-                    <!-- Carton -->
-                    <div class="row pt-5">
-                        <!-- Converse carton -->
-                        <div class="column pr-5">
-                            <div class="input-form col-span-3">
-                                <label for="converse_carton" class="form-label w-full flex flex-col sm:flex-row">
-                                    Converse Carton
-                                </label>
-                                <input id="converse_carton" type="number" name="converse_carton"
-                                    class="form-control field-new" value="{{ $product->converse_carton }}">
+                        <!-- Carton -->
+                        <div class="row mt-1 col-span-3">
+                            <!-- Converse carton -->
+                            <div class="column">
+                                <div class="input-form col-span-6">
+                                    <label for="converse_carton" class="form-label w-full flex flex-col sm:flex-row">
+                                        Converse&nbsp;Carton
+                                    </label>
+                                    <input id="converse_carton" type="number" name="converse_carton"
+                                        class="form-control field-new" value="{{ $product->converse_carton }}">
+                                </div>
+                            </div>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <!-- Carton barcode -->
+                            <div class="column">
+                                <div class="input-form col-span-3">
+                                    <label for="carton_barcode" class="form-label w-full flex flex-col sm:flex-row">
+                                        Carton&nbsp;Barcode
+                                    </label>
+                                    <input id="carton_barcode" type="number" name="carton_barcode"
+                                        class="form-control field-new" value="{{ $product->carton_barcode }}">
+                                </div>
                             </div>
                         </div>
-                        <!-- Carton barcode -->
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="carton_barcode" class="form-label w-full flex flex-col sm:flex-row">
-                                    Carton Barcode
-                                </label>
-                                <input id="carton_barcode" type="number" name="carton_barcode"
-                                    class="form-control field-new" value="{{ $product->carton_barcode }}">
+
+                        <!-- BOX -->
+                        <div class="row mt-1 col-span-3">
+                            <!-- Converse BOX -->
+                            <div class="column">
+                                <div class="input-form col-span-3">
+                                    <label for="converse_box" class="form-label w-full flex flex-col sm:flex-row">
+                                        Converse Box
+                                    </label>
+                                    <input id="converse_box" type="number" name="converse_box"
+                                        class="form-control field-new" value="{{ $product->converse_box }}">
+                                </div>
+                            </div>
+                            <!-- BOX barcode -->
+                            <div class="column">
+                                <div class="input-form col-span-3">
+                                    <label for="box_barcode" class="form-label w-full flex flex-col sm:flex-row">
+                                        Box Barcode
+                                    </label>
+                                    <input id="box_barcode" type="number" name="box_barcode"
+                                        class="form-control field-new" value="{{ $product->box_barcode }}">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- BOX -->
-                    <div class="row">
-                        <!-- Converse BOX -->
-                        <div class="column pr-5">
-                            <div class="input-form col-span-3">
-                                <label for="converse_box" class="form-label w-full flex flex-col sm:flex-row">
-                                    Converse Box
-                                </label>
-                                <input id="converse_box" type="number" name="converse_box"
-                                    class="form-control field-new" value="{{ $product->converse_box }}">
-                            </div>
-                        </div>
-                        <!-- BOX barcode -->
-                        <div class="column">
-                            <div class="input-form col-span-3">
-                                <label for="box_barcode" class="form-label w-full flex flex-col sm:flex-row">
-                                    Box Barcode
-                                </label>
-                                <input id="box_barcode" type="number" name="box_barcode" class="form-control field-new"
-                                    value="{{ $product->box_barcode }}">
-                            </div>
-                        </div>
-                    </div>
 
-                    
 
-                    <!-- Converse pcs -->
-                    {{-- <div class="input-form col-span-3 mt-3">
+                        <!-- Converse pcs -->
+                        {{-- <div class="input-form col-span-3 mt-3">
                         <label for="converse_pcs" class="form-label w-full flex flex-col sm:flex-row">
                             Converse PCS
                         </label>
@@ -402,221 +417,223 @@
                             value="{{ $product->converse_pcs }}">
                     </div> --}}
 
-                    <!-- Negative Billing -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="negative_billing" class="form-label w-full flex flex-col sm:flex-row">
-                            Negative Billing
-                        </label>
-                        <select id="negative_billing" name="negative_billing" class="form-control field-new">
-                            <option value="NO"
-                                {{ old('negative_billing', $product->negative_billing ?? '') == 'NO' ? 'selected' : '' }}>
-                                NO</option>
-                            <option value="YES"
-                                {{ old('negative_billing', $product->negative_billing ?? '') == 'YES' ? 'selected' : '' }}>
-                                YES</option>
-                            {{-- @foreach ($roles as $role)
+                        <!-- Negative Billing -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="negative_billing" class="form-label w-full flex flex-col sm:flex-row">
+                                Negative Billing
+                            </label>
+                            <select id="negative_billing" name="negative_billing" class="form-control field-new">
+                                <option value="NO"
+                                    {{ old('negative_billing', $product->negative_billing ?? '') == 'NO' ? 'selected' : '' }}>
+                                    NO</option>
+                                <option value="YES"
+                                    {{ old('negative_billing', $product->negative_billing ?? '') == 'YES' ? 'selected' : '' }}>
+                                    YES</option>
+                                {{-- @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                 @endforeach --}}
-                        </select>
-                    </div>
-
-                    <!-- Min quantity -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="min_qty" class="form-label w-full flex flex-col sm:flex-row">
-                            Minimum Quantity
-                        </label>
-                        <input id="min_qty" type="number" name="min_qty" class="form-control field-new"
-                            value="{{ $product->min_qty }}">
-                    </div>
-
-                    <!-- Reorder quantity -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="reorder_qty" class="form-label w-full flex flex-col sm:flex-row">
-                            Reorder Quantity
-                        </label>
-                        <input id="reorder_qty" type="number" name="reorder_qty" class="form-control field-new"
-                            value="{{ $product->reorder_qty }}">
-                    </div>
-
-                    <!-- Discount -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="discount" class="form-label w-full flex flex-col sm:flex-row">
-                            Discount
-                        </label>
-                        <select id="discount" name="discount" class="form-control field-new">
-                            <option value="" disabled
-                                {{ old('discount', $product->discount ?? '') == '' ? 'selected' : '' }}>
-                                Choose...
-                            </option>
-                            <option value="applicable"
-                                {{ old('discount', $product->discount ?? '') == 'applicable' ? 'selected' : '' }}>
-                                Applicable
-                            </option>
-                            <option value="not_applicable"
-                                {{ old('discount', $product->discount ?? '') == 'not_applicable' ? 'selected' : '' }}>
-                                Not Applicable
-                            </option>
-                        </select>
-                    </div>
-
-
-                    <!-- Max Discount -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="max_discount" class="form-label w-full flex flex-col sm:flex-row">
-                            Max Discount (%)
-                        </label>
-                        <input id="max_discount" type="number" step="0.0001" name="max_discount"
-                            class="form-control field-new" value="{{ $product->max_discount }}">
-                    </div>
-
-                    <!-- Discount Scheme -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="discount_scheme" class="form-label w-full flex flex-col sm:flex-row">
-                            Discount Scheme
-                        </label>
-                        <input id="discount_scheme" type="text" name="discount_scheme" class="form-control field-new"
-                            value="{{ $product->discount_scheme }}">
-                    </div>
-
-                    <!-- Bonus Use -->
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="bonus_use" class="form-label w-full flex flex-col sm:flex-row">
-                            Bonus Use
-                        </label>
-                        <select id="bonus_use" name="bonus_use" class="form-control field-new">
-                            <option value="no"
-                                {{ old('bonus_use', $product->bonus_use ?? '') == '0' ? 'selected' : '' }}>NO</option>
-                            <option value="yes"
-                                {{ old('bonus_use', $product->bonus_use ?? '') == '1 ' ? 'selected' : '' }}>YES</option>
-                        </select>
-                        {{-- <input id="bonus_use" type="text" name="bonus_use" class="form-control field-new"> --}}
-                    </div>
-
-                    <!-- Submit Button -->
-                </div>
-
-                <div class="column">
-                    <!-- Loose quantity decimal button -->
-                    <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
-                        <label for="decimal_btn" class="form-label w-full flex flex-col sm:flex-row">
-                            Decimal
-                        </label>
-                        <input id="decimal_btn" type="checkbox" name="decimal_btn" class="form-check-input mr-0 ml-3"
-                            {{ $product->decimal_btn ? 'checked' : '' }}>
-                    </div>
-
-                    <div id="decimal_section" style="{{ $product->decimal_btn ? 'display: block;' : 'display: none;' }}">
-                        <div class="row">
-                            <!-- BOX barcode -->
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
-                                        Price 1
-                                    </label>
-                                    <input id="price_1" type="number" name="price_1" class="form-control field-new"
-                                        value={{ $product->price_1 ?? '' }}>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
-                                        Price 2
-                                    </label>
-                                    <input id="price_2" type="number" name="price_2" class="form-control field-new"
-                                        value={{ $product->price_2 ?? '' }}>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
-                                        Price 3
-                                    </label>
-                                    <input id="price_3" type="number" name="price_3" class="form-control field-new"
-                                        value={{ $product->price_3 ?? '' }}>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
-                                        Price 4
-                                    </label>
-                                    <input id="price_4" type="number" name="price_4" class="form-control field-new"
-                                        value={{ $product->price_4 ?? '' }}>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
-                                        Price 5
-                                    </label>
-                                    <input id="price_5" type="number" name="price_5" class="form-control field-new"
-                                        value={{ $product->price_5 ?? '' }}>
-                                </div>
-                            </div>
+                            </select>
                         </div>
 
-                        <div class="row">
-                            <!-- BOX barcode -->
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
-                                        Weight 1
-                                    </label>
-                                    <input id="kg_1" type="number" name="kg_1" class="form-control field-new"
-                                        value="{{ $product->Kg_1 }}">
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
-                                        Weight 2
-                                    </label>
-                                    <input id="kg_2" type="number" name="kg_2" class="form-control field-new"
-                                        value="{{ $product->Kg_2 }}">
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
-                                        Weight 3
-                                    </label>
-                                    <input id="kg_3" type="number" name="kg_3" class="form-control field-new"
-                                        value="{{ $product->Kg_3 }}">
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
-                                        Weight 4
-                                    </label>
-                                    <input id="kg_4" type="number" name="kg_4" class="form-control field-new"
-                                        value="{{ $product->Kg_4 }}">
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="input-form col-span-3">
-                                    <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
-                                        Weight 5
-                                    </label>
-                                    <input id="kg_5" type="number" name="kg_5" class="form-control field-new"
-                                        value="{{ $product->Kg_5 }}">
-                                </div>
-                            </div>
+                        <!-- Min quantity -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="min_qty" class="form-label w-full flex flex-col sm:flex-row">
+                                Minimum Quantity
+                            </label>
+                            <input id="min_qty" type="number" name="min_qty" class="form-control field-new"
+                                value="{{ $product->min_qty }}">
                         </div>
-                        
-                    </div>
 
-                    <!-- Sale online toggle -->
-                    <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
-                        <label for="sale_online" class="form-label w-full flex flex-col sm:flex-row">
-                            Sale Online
-                        </label>
-                        <input id="sale_online" type="checkbox" name="sale_online" class="form-check-input mr-0 ml-3"
-                            {{ $product->sale_online ? 'checked' : '' }}>
-                    </div>
+                        <!-- Reorder quantity -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="reorder_qty" class="form-label w-full flex flex-col sm:flex-row">
+                                Reorder Quantity
+                            </label>
+                            <input id="reorder_qty" type="number" name="reorder_qty" class="form-control field-new"
+                                value="{{ $product->reorder_qty }}">
+                        </div>
 
-                    <!-- GST active toggle -->
-                    {{-- <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
+                        <!-- Discount -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="discount" class="form-label w-full flex flex-col sm:flex-row">
+                                Discount
+                            </label>
+                            <select id="discount" name="discount" class="form-control field-new">
+                                <option value="" disabled
+                                    {{ old('discount', $product->discount ?? '') == '' ? 'selected' : '' }}>
+                                    Choose...
+                                </option>
+                                <option value="applicable"
+                                    {{ old('discount', $product->discount ?? '') == 'applicable' ? 'selected' : '' }}>
+                                    Applicable
+                                </option>
+                                <option value="not_applicable"
+                                    {{ old('discount', $product->discount ?? '') == 'not_applicable' ? 'selected' : '' }}>
+                                    Not Applicable
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <!-- Max Discount -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="max_discount" class="form-label w-full flex flex-col sm:flex-row">
+                                Max Discount (%)
+                            </label>
+                            <input id="max_discount" type="number" step="0.0001" name="max_discount"
+                                class="form-control field-new" value="{{ $product->max_discount }}">
+                        </div>
+
+                        <!-- Discount Scheme -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="discount_scheme" class="form-label w-full flex flex-col sm:flex-row">
+                                Discount Scheme
+                            </label>
+                            <input id="discount_scheme" type="text" name="discount_scheme"
+                                class="form-control field-new" value="{{ $product->discount_scheme }}">
+                        </div>
+
+                        <!-- Bonus Use -->
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="bonus_use" class="form-label w-full flex flex-col sm:flex-row">
+                                Bonus Use
+                            </label>
+                            <select id="bonus_use" name="bonus_use" class="form-control field-new">
+                                <option value="no"
+                                    {{ old('bonus_use', $product->bonus_use ?? '') == '0' ? 'selected' : '' }}>NO</option>
+                                <option value="yes"
+                                    {{ old('bonus_use', $product->bonus_use ?? '') == '1 ' ? 'selected' : '' }}>YES
+                                </option>
+                            </select>
+                            {{-- <input id="bonus_use" type="text" name="bonus_use" class="form-control field-new"> --}}
+                        </div>
+
+                        <!-- Submit Button -->
+                    </div>
+                       <hr class="col-span-12 mt-5">
+                    <div class="column col-span-12">
+                        <!-- Loose quantity decimal button -->
+                        <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
+                            <label for="decimal_btn" class="form-label w-full flex flex-col sm:flex-row">
+                                Decimal
+                            </label>
+                            <input id="decimal_btn" type="checkbox" name="decimal_btn"
+                                class="form-check-input mr-0 ml-3" {{ $product->decimal_btn ? 'checked' : '' }}>
+                        </div>
+
+                        <div id="decimal_section"
+                            style="{{ $product->decimal_btn ? 'display: block;' : 'display: none;' }}">
+                            <div class="row">
+                                <!-- BOX barcode -->
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="price_1" class="form-label w-full flex flex-col sm:flex-row">
+                                            Price 1
+                                        </label>
+                                        <input id="price_1" type="number" name="price_1"
+                                            class="form-control field-new" value={{ $product->price_1 ?? '' }}>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="price_2" class="form-label w-full flex flex-col sm:flex-row">
+                                            Price 2
+                                        </label>
+                                        <input id="price_2" type="number" name="price_2"
+                                            class="form-control field-new" value={{ $product->price_2 ?? '' }}>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="price_3" class="form-label w-full flex flex-col sm:flex-row">
+                                            Price 3
+                                        </label>
+                                        <input id="price_3" type="number" name="price_3"
+                                            class="form-control field-new" value={{ $product->price_3 ?? '' }}>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="price_4" class="form-label w-full flex flex-col sm:flex-row">
+                                            Price 4
+                                        </label>
+                                        <input id="price_4" type="number" name="price_4"
+                                            class="form-control field-new" value={{ $product->price_4 ?? '' }}>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="price_5" class="form-label w-full flex flex-col sm:flex-row">
+                                            Price 5
+                                        </label>
+                                        <input id="price_5" type="number" name="price_5"
+                                            class="form-control field-new" value={{ $product->price_5 ?? '' }}>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- BOX barcode -->
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="kg_1" class="form-label w-full flex flex-col sm:flex-row">
+                                            Weight 1
+                                        </label>
+                                        <input id="kg_1" type="number" name="kg_1"
+                                            class="form-control field-new" value="{{ $product->Kg_1 }}">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="kg_2" class="form-label w-full flex flex-col sm:flex-row">
+                                            Weight 2
+                                        </label>
+                                        <input id="kg_2" type="number" name="kg_2"
+                                            class="form-control field-new" value="{{ $product->Kg_2 }}">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="kg_3" class="form-label w-full flex flex-col sm:flex-row">
+                                            Weight 3
+                                        </label>
+                                        <input id="kg_3" type="number" name="kg_3"
+                                            class="form-control field-new" value="{{ $product->Kg_3 }}">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="kg_4" class="form-label w-full flex flex-col sm:flex-row">
+                                            Weight 4
+                                        </label>
+                                        <input id="kg_4" type="number" name="kg_4"
+                                            class="form-control field-new" value="{{ $product->Kg_4 }}">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="input-form col-span-3">
+                                        <label for="kg_5" class="form-label w-full flex flex-col sm:flex-row">
+                                            Weight 5
+                                        </label>
+                                        <input id="kg_5" type="number" name="kg_5"
+                                            class="form-control field-new" value="{{ $product->Kg_5 }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Sale online toggle -->
+                        <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
+                            <label for="sale_online" class="form-label w-full flex flex-col sm:flex-row">
+                                Sale Online
+                            </label>
+                            <input id="sale_online" type="checkbox" name="sale_online"
+                                class="form-check-input mr-0 ml-3" {{ $product->sale_online ? 'checked' : '' }}>
+                        </div>
+
+                        <!-- GST active toggle -->
+                        {{-- <div class="input-form col-span-3 mt-3 form-check form-switch w-full sm:ml-auto">
                         <label for="gst_active" class="form-label w-full flex flex-col sm:flex-row">
                             GST
                         </label>
@@ -624,33 +641,33 @@
                             {{ $product->gst_active ? 'checked' : '' }}>
                     </div> --}}
 
-                    <div class="input-form col-span-3 mt-3">
-                        <label for="fileInput" class="form-label w-full flex flex-col sm:flex-row">
-                            Product Image
-                        </label>
+                        <div class="input-form col-span-3 mt-3">
+                            <label for="fileInput" class="form-label w-full flex flex-col sm:flex-row">
+                                Product Image
+                            </label>
 
-                        <div
-                            style="position: relative; border: 2px dashed #ccc; border-radius: 8px; padding: 50px 40px; text-align: center; background-color: #f9f9f9; cursor: pointer;">
-                            <input name="product_image" type="file" id="fileInput" accept="image/*"
-                                style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; z-index: 1;"
-                                onchange="previewImage(this)" />
+                            <div
+                                style="position: relative; border: 2px dashed #ccc; border-radius: 8px; padding: 50px 40px; text-align: center; background-color: #f9f9f9; cursor: pointer;">
+                                <input name="product_image" type="file" id="fileInput" accept="image/*"
+                                    style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; z-index: 1;"
+                                    onchange="previewImage(this)" />
 
-                            <div id="uploadMessage" style="color: #666; font-size: 16px; pointer-events: none;">
-                                Drop Product image file here or click to upload.
-                            </div>
+                                <div id="uploadMessage" style="color: #666; font-size: 16px; pointer-events: none;">
+                                    Drop Product image file here or click to upload.
+                                </div>
 
-                            <!-- Preview box (shows initially if product has image) -->
-                            <div id="imagePreview"
-                                style="max-width: 300px; margin: 0 auto; {{ $product->image ? '' : 'display: none;' }}">
-                                <img id="previewImg" src="{{ $product->image ? asset($product->image) : '' }}"
-                                    style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;" />
-                                <div style="margin-top: 10px; font-size: 14px; color: #666;">
-                                    <span id="fileName">{{ $product->image ? basename($product->image) : '' }}</span>
+                                <!-- Preview box (shows initially if product has image) -->
+                                <div id="imagePreview"
+                                    style="max-width: 300px; margin: 0 auto; {{ $product->image ? '' : 'display: none;' }}">
+                                    <img id="previewImg" src="{{ $product->image ? asset($product->image) : '' }}"
+                                        style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;" />
+                                    <div style="margin-top: 10px; font-size: 14px; color: #666;">
+                                        <span id="fileName">{{ $product->image ? basename($product->image) : '' }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>
@@ -823,11 +840,11 @@
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const decimalCheckbox = document.getElementById("decimal_btn");
         const decimalSection = document.getElementById("decimal_section");
 
-        decimalCheckbox.addEventListener("change", function () {
+        decimalCheckbox.addEventListener("change", function() {
             if (this.checked) {
                 decimalSection.style.display = "block";
             } else {
