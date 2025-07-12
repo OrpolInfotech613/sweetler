@@ -45,6 +45,21 @@
                                 *</span></label>
                         <input type="text" name="party_name" class="form-control field-new" required>
                     </div>
+                    <!-- GST No -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="gst_number" class="form-label w-full flex flex-col sm:flex-row">GST No</label>
+                        <input id="gst_number" type="text" name="gst_number" class="form-control field-new">
+                    </div>
+                    <!-- State -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="state" class="form-label w-full flex flex-col sm:flex-row">State</label>
+                        <input id="state" type="text" name="state" class="form-control field-new">
+                    </div>
+                    <!-- Pan No -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
+                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new">
+                    </div>
                     {{-- <div class="input-form col-span-3 mt-3">
                             <label class="form-label">Company Name</label>
                             <input type="text" name="company_name" class="form-control field-new">
@@ -53,19 +68,7 @@
                         <label class="form-label">Gst NO.</label>
                         <input type="text" name="gst_number" class="form-control field-new">
                     </div> --}}
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">Bank Account Number</label>
-                        <input type="text" name="acc_no" class="form-control field-new">
-                    </div>
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">IFSC Code</label>
-                        <input type="text" name="ifsc_code" class="form-control field-new">
-                    </div>
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">Mobile NO.</label>
-                        <input type="text" name="mobile_no"
-                            class="form-control field-new"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
-                    </div>
+                    
                     <div class="input-form col-span-3 mt-3">
                         <label class="form-label">Email</label>
                         <input type="email" name="email" class="form-control field-new">
@@ -95,20 +98,18 @@
                             <option value="On Account">On Account</option>
                         </select>
                     </div>
-                    <!-- GST No -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="gst_number" class="form-label w-full flex flex-col sm:flex-row">GST No</label>
-                        <input id="gst_number" type="text" name="gst_number" class="form-control field-new">
+                        <label class="form-label">Bank Account Number</label>
+                        <input type="text" name="acc_no" class="form-control field-new">
                     </div>
-                    <!-- State -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="state" class="form-label w-full flex flex-col sm:flex-row">State</label>
-                        <input id="state" type="text" name="state" class="form-control field-new">
+                        <label class="form-label">IFSC Code</label>
+                        <input type="text" name="ifsc_code" class="form-control field-new">
                     </div>
-                    <!-- Pan No -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
-                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new">
+                        <label class="form-label">Mobile NO.</label>
+                        <input type="text" name="mobile_no"
+                            class="form-control field-new"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
                     </div>
                     <!-- GST Heading -->
                     {{-- <div class="input-form col-span-3 mt-3">

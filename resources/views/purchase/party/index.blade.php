@@ -48,10 +48,10 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger mr-1 mb-2">Delete</button>
                                             </form>
-                                            {{-- <a href="{{ route('purchase.party.edit', $party->id) }}"
+                                            <a href="{{ route('purchase.party.edit', $party->id) }}"
                                                 class="btn btn-primary mr-1 mb-2">
                                                 Edit
-                                            </a> --}}
+                                            </a> 
                                         </div>
                                     </td>
                                 </tr>

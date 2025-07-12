@@ -820,7 +820,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="{{ route('dashboard') }}" class="logo -intro-x hidden md:flex xl:w-[180px] block">
                 <img alt="Midone - HTML Admin Template" class="logo__image w-20"
                     src="{{ asset('images/logo.png') }}">
-                <span class="logo__text text-white text-lg ml-3"> Sweetler </span>
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->

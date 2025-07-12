@@ -47,6 +47,22 @@
                                 *</span></label>
                         <input type="text" name="party_name" class="form-control field-new" value="{{ old('party_name', $party->party_name) }}" required>
                     </div>
+
+                    <!-- GST No -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="gst_number" class="form-label w-full flex flex-col sm:flex-row">GST NO.</label>
+                        <input id="gst_number" type="text" name="gst_number" class="form-control field-new" value="{{ old('gst_number', $party->gst_number) }}">
+                    </div>
+                    <!-- State -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="state" class="form-label w-full flex flex-col sm:flex-row">State</label>
+                        <input id="state" type="text" name="state" class="form-control field-new" value="{{ old('state', $party->state) }}">
+                    </div>
+                    <!-- Pan No -->
+                    <div class="input-form col-span-3 mt-3">
+                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
+                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new" value="{{ old('pan_no', $party->pan_no) }}">
+                    </div>
                     {{-- <div class="input-form col-span-3 mt-3">
                             <label class="form-label">Company Name</label>
                             <input type="text" name="company_name" class="form-control field-new">
@@ -55,19 +71,7 @@
                         <label class="form-label">Gst NO.</label>
                         <input type="text" name="gst_number" class="form-control field-new">
                     </div> --}}
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">Bank Account Number</label>
-                        <input type="text" name="acc_no" class="form-control field-new" value="{{ old('acc_no', $party->acc_no) }}">
-                    </div>
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">IFSC Code</label>
-                        <input type="text" name="ifsc_code" class="form-control field-new" value="{{ old('ifsc_code', $party->ifsc_code) }}">
-                    </div>
-                    <div class="input-form col-span-3 mt-3">
-                        <label class="form-label">Mobile NO.</label>
-                        <input type="text" name="mobile_no" value="{{ old('mobile_no', $party->mobile_no) }}"
-                            class="form-control field-new"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
-                    </div>
+                    
                     <div class="input-form col-span-3 mt-3">
                         <label class="form-label">Email</label>
                         <input type="email" name="email" class="form-control field-new" value="{{ old('email', $party->email) }}">
@@ -93,26 +97,26 @@
                             Method</label>
                         <select id="balancing_method" name="balancing_method" class="form-control field-new">
                             {{-- <option value="" {{ !$party->balancing_method ?? 'selected'}}>Select Balancing Method...</option> --}}
-                            <option value="Bill By Bill" {{ $party->balancing_method == 'Bill By Bill' ? 'selected' : '' }}>Fifo Base</option>
+                            <option value="Bill By Bill" {{ $party->balancing_method == 'Bill By Bill' ? 'selected' : '' }}>Bill By Bill</option>
                             <option value="Fifo Base" {{ $party->balancing_method == 'Fifo Base' ? 'selected' : '' }}>Fifo Base</option>
                             <option value="On Account" {{ $party->balancing_method == 'On Account' ? 'selected' : '' }}>On Account</option>
                         </select>
                     </div>
-                    <!-- GST No -->
+
                     <div class="input-form col-span-3 mt-3">
-                        <label for="gst_number" class="form-label w-full flex flex-col sm:flex-row">GST NO.</label>
-                        <input id="gst_number" type="text" name="gst_number" class="form-control field-new" value="{{ old('gst_number', $party->gst_number) }}">
+                        <label class="form-label">Bank Account Number</label>
+                        <input type="text" name="acc_no" class="form-control field-new" value="{{ old('acc_no', $party->acc_no) }}">
                     </div>
-                    <!-- State -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="state" class="form-label w-full flex flex-col sm:flex-row">State</label>
-                        <input id="state" type="text" name="state" class="form-control field-new" value="{{ old('state', $party->state) }}">
+                        <label class="form-label">IFSC Code</label>
+                        <input type="text" name="ifsc_code" class="form-control field-new" value="{{ old('ifsc_code', $party->ifsc_code) }}">
                     </div>
-                    <!-- Pan No -->
                     <div class="input-form col-span-3 mt-3">
-                        <label for="pan_no" class="form-label w-full flex flex-col sm:flex-row">Pan No</label>
-                        <input id="pan_no" type="text" name="pan_no" class="form-control field-new" value="{{ old('pan_no', $party->pan_no) }}">
+                        <label class="form-label">Mobile NO.</label>
+                        <input type="text" name="mobile_no" value="{{ old('mobile_no', $party->mobile_no) }}"
+                            class="form-control field-new"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
                     </div>
+                    
                     <!-- GST Heading -->
                     {{-- <div class="input-form col-span-3 mt-3">
                         <label for="gst_heading" class="form-label w-full flex flex-col sm:flex-row">GST Heading</label>
