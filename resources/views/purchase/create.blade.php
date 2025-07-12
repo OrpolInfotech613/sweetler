@@ -144,11 +144,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-2 grid-updated mt-12">
+            <div class="grid grid-cols-12 gap-2 grid-updated mt-12" style="overflow-y:auto;">
                 {{-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
                     <button type="button" class="btn btn-primary shadow-md mr-2 btn-hover"> + Add Product</button>
                 </div> --}}
-                <table class="display table intro-y col-span-12 bg-transparent w-full product-table">
+                <table class="display table intro-y col-span-12 bg-transparent product-table" style="min-width:1400px;">
                     <thead>
                         <tr class="border-b fs-7 fw-bolder text-gray-700 uppercase text-center">
                             <th scope="col" class="required">Product</th>
