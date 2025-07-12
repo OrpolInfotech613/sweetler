@@ -167,7 +167,7 @@
 
             if (inventories.length === 0) {
                 tableBody.innerHTML =
-                    '<tr><td colspan="6" class="text-center py-4 text-gray-500">No inventory records found</td></tr>';
+                    '<tr><td colspan="7" class="text-center py-4 text-gray-500">No inventory records found</td></tr>';
                 productName.textContent = 'No Product Data';
                 return;
             }
