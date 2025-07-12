@@ -144,11 +144,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-2 grid-updated mt-12" >
+            <div class="grid grid-cols-12 gap-2 grid-updated mt-12 custome_scroll" style="overflow-x:auto;">
                 {{-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
                     <button type="button" class="btn btn-primary shadow-md mr-2 btn-hover"> + Add Product</button>
                 </div> --}}
-                <table class="display table intro-y col-span-12 bg-transparent product-table">
+                <table class="display table intro-y col-span-12 bg-transparent product-table" style="min-width:1400px;">
                     <thead>
                         <tr class="border-b fs-7 fw-bolder text-gray-700 uppercase text-center">
                             <th scope="col" class="required">Product</th>
@@ -716,6 +716,8 @@
 
             if (value.length < 1) {
                 dropdown.classList.remove('show');
+                const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                 currentData = [];
                 return;
             }
@@ -766,6 +768,9 @@
 
                     dropdown.innerHTML = html;
                     dropdown.classList.add('show');
+                    const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'clip';
+
                     selectedIndex = -1;
 
                     // Add click listeners to dropdown items
@@ -781,6 +786,8 @@
                 } catch (error) {
                     console.error('Product search error:', error);
                     dropdown.classList.remove('show');
+                    const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                     currentData = [];
                 }
             }, 200);
@@ -820,6 +827,8 @@
                 }
             } else if (e.key === 'Escape') {
                 dropdown.classList.remove('show');
+                const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                 selectedIndex = -1;
             }
         });
@@ -828,6 +837,8 @@
         document.addEventListener('click', function(e) {
             if (!input.contains(e.target) && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('show');
+                const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                 selectedIndex = -1;
             }
         });
@@ -895,6 +906,8 @@
 
         // Close dropdown
         dropdown.classList.remove('show');
+        const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
 
         // Update search input
         input.value = productName;
@@ -1269,6 +1282,8 @@
 
                     dropdown.innerHTML = html;
                     dropdown.classList.add('show');
+                    const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'clip';
                     selectedIndex = -1;
 
                     // Add click listeners to dropdown items
@@ -1290,6 +1305,8 @@
                 } catch (error) {
                     console.error('Party search error:', error);
                     dropdown.classList.remove('show');
+                    const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                     currentPartyData = [];
                 }
             }, 200);
@@ -1316,6 +1333,8 @@
                 }
             } else if (e.key === 'Escape') {
                 dropdown.classList.remove('show');
+                const scroll_container = document.querySelector('.custome_scroll');
+                    if (scroll_container) scroll_container.style.overflowX = 'auto';
                 selectedIndex = -1;
             }
         });
@@ -1331,6 +1350,7 @@
         // Handle dropdown item selection
         function handlePartyDropdownItemClick(item) {
             dropdown.classList.remove('show');
+
 
             if (item.dataset.newValue) {
                 openPartyModal(item.dataset.newValue);
