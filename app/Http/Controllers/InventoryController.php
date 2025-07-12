@@ -160,10 +160,13 @@ class InventoryController extends Controller
                 'product_id' => $request->product_id,
                 'quantity' => strtoupper($request->type) == 'IN' ? $request->quantity : -$request->quantity,
                 'type' => $request->type,
+                'mrp' => $request->mrp ?? 0,
+                'sale_price' => $request->sale_price ?? 0,
+                'purchase_price' => $request->purchase_price ?? 0,
+                'gst' => $request->gst,
                 'reason' => $request->reason,
-                'gst' => $request->gst
-                // 'created_at' => now(),
-                // 'updated_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
 
             if (strtoupper($role->role_name) === 'SUPER ADMIN') {
@@ -194,5 +197,22 @@ class InventoryController extends Controller
         }
 
         return view('inventory.create', compact('products'));
+    }
+
+    public function show(string $id) {
+        $auth = $this->authenticateAndConfigureBranch();
+        $user = $auth['user'];
+        $branch = $auth['branch'];
+        $role = $auth['role'];
+
+        if (strtoupper($role->role_name) === 'SUPER ADMIN') {
+            $inventories = Inventory::where('product_id', $id)->get();
+        } else {
+            $inventories = Inventory::on($branch->connection_name)->where('product_id', $id)->get();
+        }
+
+        return response()->json([
+            'inventories' => $inventories
+        ]);
     }
 }
