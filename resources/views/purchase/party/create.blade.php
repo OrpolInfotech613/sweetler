@@ -238,6 +238,7 @@
                 // Autofill fields
                 document.getElementById('state').value = `${stateCode}-${stateName}`.toUpperCase();
                 document.getElementById('pan_no').value = pan;
+                document.getElementById('country').value = "India";
             }
         });
 
