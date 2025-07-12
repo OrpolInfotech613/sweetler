@@ -107,10 +107,10 @@ class InventoryController extends Controller
                         $groupedInventory = (object) [
                             'product_id' => $productId,
                             'product' => $product,
-                            'type' => 'calculated',
+                            // 'type' => 'calculated',
                             'quantity' => $totalQuantity,
                             'unit' => $productInventories->first()->unit ?? 'pcs',
-                            'reason' => 'Total Stock',
+                            // 'reason' => 'Total Stock',
                             'created_at' => $productInventories->max('created_at'),
                             'updated_at' => $productInventories->max('updated_at')
                         ];
@@ -206,12 +206,13 @@ class InventoryController extends Controller
         $role = $auth['role'];
 
         if (strtoupper($role->role_name) === 'SUPER ADMIN') {
-            $inventories = Inventory::where('product_id', $id)->get();
+            $inventories = Inventory::with('product')->where('product_id', $id)->get();
         } else {
-            $inventories = Inventory::on($branch->connection_name)->where('product_id', $id)->get();
+            $inventories = Inventory::on($branch->connection_name)->with('product')->where('product_id', $id)->get();
         }
 
         return response()->json([
+            'success' => true,
             'inventories' => $inventories
         ]);
     }
