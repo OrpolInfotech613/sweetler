@@ -184,8 +184,8 @@
                                         <option value="{{ $product->id }}" data-mrp="{{ $product->mrp ?? 0 }}"
                                             data-name="{{ $product->product_name }}"
                                             data-box-pcs="{{ $product->converse_box ?? 1 }}"
-                                            data-sgst="{{ $product->gst / 2 ?? 0 }}"
-                                            data-cgst="{{ $product->gst / 2 ?? 0 }}"
+                                            data-sgst="{{ $product->hsnCode->gst / 2 ?? 0 }}"
+                                            data-cgst="{{ $product->hsnCode->gst / 2 ?? 0 }}"
                                             data-purchase-rate="{{ $product->purchase_rate ?? 0 }}"
                                             data-sale-rate-a="{{ $product->sale_rate_a ?? 0 }}"
                                             data-sale-rate-b="{{ $product->sale_rate_b ?? 0 }}"
@@ -996,8 +996,8 @@
         // Set all data attributes
         newOption.setAttribute('data-mrp', productData.mrp || 0);
         newOption.setAttribute('data-name', productData.product_name);
-        newOption.setAttribute('data-sgst', productData.sgst || 0);
-        newOption.setAttribute('data-cgst', productData.cgst1 || productData.cgst || 0);
+        newOption.setAttribute('data-sgst', productData.hsn_code.gst / 2 || 0);
+        newOption.setAttribute('data-cgst', productData.hsn_code.gst / 2 || 0);
         newOption.setAttribute('data-purchase-rate', productData.purchase_rate || 0);
         newOption.setAttribute('data-sale-rate-a', productData.sale_rate_a || 0);
         newOption.setAttribute('data-sale-rate-b', productData.sale_rate_b || 0);

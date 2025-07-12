@@ -923,7 +923,7 @@ class ProductController extends Controller
                 // For Super Admin, search in the default connection or specify a branch
                 $search = $request->get('search', '');
 
-                $product = Product::where('barcode', trim($search))->first();
+                $product = Product::with('hsnCode')->where('barcode', trim($search))->first();
 
                 if ($product) {
                     return response()->json([
@@ -934,7 +934,7 @@ class ProductController extends Controller
                     ]);
                 }
 
-                $products = Product::where('product_name', 'LIKE', "%{$search}%")
+                $products = Product::with('hsnCode')->where('product_name', 'LIKE', "%{$search}%")
                     ->orWhere('barcode', 'LIKE', "%{$search}%")
                     ->limit(10)
                     ->get();
@@ -943,7 +943,7 @@ class ProductController extends Controller
                 $branchConnection = $branch->connection_name;
 
                 $search = $request->get('search', '');
-                $product = Product::on($branchConnection)->where('barcode', trim($search))->first();
+                $product = Product::on($branchConnection)->with('hsnCode')->where('barcode', trim($search))->first();
 
                 if ($product) {
                     return response()->json([
@@ -955,6 +955,7 @@ class ProductController extends Controller
                 }
 
                 $products = Product::on($branchConnection)
+                    ->with('hsnCode')
                     ->where('product_name', 'LIKE', "%{$search}%")
                     ->orWhere('barcode', 'LIKE', "%{$search}%")
                     ->limit(10)
