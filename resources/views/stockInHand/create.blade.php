@@ -17,7 +17,7 @@
 @section('content')
     <div class="content">
         <h2 class="intro-y text-lg font-medium mt-10 heading">
-            Add Profit and Loose
+            Stock in Hand
         </h2>
         <form action="{{ route('stock-in-hand.store') }}" method="POST" class="form-updated validate-form">
             @csrf
@@ -29,7 +29,7 @@
                             Select Product<span style="color: red;margin-left: 3px;"> *</span>
                         </label>
                         <select id="product" name="product" class="form-control field-new" required>
-                            <option value="" selected>Select Profit/Loose...</option>
+                            <option value="" selected>Select Product</option>
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->product_name }}</option>
                             @endforeach
